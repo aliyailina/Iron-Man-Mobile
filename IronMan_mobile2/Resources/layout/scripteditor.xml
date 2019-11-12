@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:minHeight="25px"
+        android:minWidth="25px"
+        android:weightSum="3">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="IP address: "
+                android:id="@+id/textView"/>
+
+
+        <EditText
+                android:layout_width="247dp"
+                android:layout_height="match_parent"
+                android:id="@+id/edIPaddress"/>
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/connect"
+                android:text="Connect"
+                android:textSize="8sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:layout_weight="1"
+            android:gravity="center">
+
+        <Button
+                android:text="Start Recording"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRecord"
+                android:typeface="monospace"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2"
+    >
+
+        <TextView
+                android:text="Your script"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:typeface="monospace"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textYourText"
+                android:textColor="@android:color/black"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:typeface="monospace"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout3"
+            android:layout_weight="1"/>
+
+    <Button
+            android:text="Save Script"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/save_script"/>
+</LinearLayout>
+
