@@ -6,13 +6,14 @@
         android:layout_height="fill_parent"
         android:minHeight="25px"
         android:minWidth="25px"
-        android:weightSum="3">
+        android:weightSum="8">
 
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:background="@drawable/edit_ip"
+            android:weightSum="4">
 
         <TextView
                 android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
 
 
         <EditText
-                android:layout_width="247dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/edIPaddress"/>
 
@@ -42,15 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/linearLayout1"
-            android:layout_weight="1"
             android:gravity="center">
-
-        <Button
-                android:text="Start Recording"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnRecord"
-                android:typeface="monospace"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,8 +52,8 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout2"
-    >
+            android:layout_weight="8"
+            android:id="@+id/linearLayout2">
 
         <TextView
                 android:text="Your script"
@@ -81,7 +74,8 @@
                 android:layout_marginRight="5dp"
                 android:typeface="monospace"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:background="@drawable/edit_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -91,12 +85,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/linearLayout3"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:weightSum="3">
 
-    <Button
-            android:text="Save Script"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/save_script"/>
+        <Button
+                android:text="Edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEdit"
+                android:layout_weight="1"/>
+        
+        
+        <Button
+                android:text="Start Recording"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnRecord"
+                android:layout_weight="1"/>
+
+        <Button
+                android:text="Save Script"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/save_script"
+                android:layout_weight="1"/>
+        
+        
+        
+    </LinearLayout>
 </LinearLayout>
 
