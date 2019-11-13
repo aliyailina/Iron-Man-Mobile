@@ -14,7 +14,7 @@ namespace IronMan_mobile2
         private bool isRecording;
         private readonly int VOICE = 10;
         private TextView textBox;
-        private Button recButton;
+        private ImageButton recButton;
         private EditText etIPaddress;
         private string serIpAddress;
         private Button saveScript;
@@ -33,7 +33,7 @@ namespace IronMan_mobile2
 
             //find IP field
             etIPaddress = view.FindViewById<EditText>(Resource.Id.edIPaddress);
-            recButton = view.FindViewById<Button>(Resource.Id.btnRecord);
+            recButton = view.FindViewById<ImageButton>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             
             //connect to computer
@@ -63,7 +63,6 @@ namespace IronMan_mobile2
                 recButton.Click += delegate
                 {
                     // change the text on the button
-                    recButton.Text = "End Recording";
                     isRecording = !isRecording;
                     if (isRecording)
                     {
@@ -115,8 +114,6 @@ namespace IronMan_mobile2
                     else
                         textBox.Text = "No speech was recognised";
                     
-                    // change the text back on the button
-                    recButton.Text = "Start Recording";
 
                     saveScript.Click += delegate
                     {

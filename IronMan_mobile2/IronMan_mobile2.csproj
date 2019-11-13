@@ -70,26 +70,41 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-hdpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-ldpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-mdpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\tab_background.png" />
+    <AndroidResource Include="Resources\drawable\buttons_bar.png" />
+    <AndroidResource Include="Resources\drawable\circle_button.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_text.png" />
+    <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.png" />
     <AndroidResource Include="Resources\layout\activity_main.axml">
       <SubType>Designer</SubType>
