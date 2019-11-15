@@ -102,9 +102,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\tab_background.png" />
     <AndroidResource Include="Resources\drawable\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
+    <AndroidResource Include="Resources\drawable\connect_background.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_text.png" />
     <AndroidResource Include="Resources\drawable\ip_background.xml" />
+    <AndroidResource Include="Resources\drawable\ip_textindicator.xml" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.png" />
     <AndroidResource Include="Resources\layout\activity_main.axml">

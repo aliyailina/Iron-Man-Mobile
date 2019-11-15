@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Speech;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
+using Java.Util;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace IronMan_mobile2
@@ -13,12 +16,13 @@ namespace IronMan_mobile2
     {
         private bool isRecording;
         private readonly int VOICE = 10;
-        private TextView textBox;
+        private EditText textBox;
         private ImageButton recButton;
         private EditText etIPaddress;
         private string serIpAddress;
         private Button saveScript;
         private Button connectButton;
+        private Button editButton;
         public static List<string> scriptsList = MainActivity.scriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -28,13 +32,18 @@ namespace IronMan_mobile2
             isRecording = false;
 
             // get the resources from the layout
-            textBox = view.FindViewById<TextView>(Resource.Id.textYourText);
+            textBox = view.FindViewById<EditText>(Resource.Id.textYourText);
+            
+            //disable textBox editing
+            textBox.Enabled = false;
+            
             saveScript = view.FindViewById<Button>(Resource.Id.save_script);
 
             //find IP field
             etIPaddress = view.FindViewById<EditText>(Resource.Id.edIPaddress);
             recButton = view.FindViewById<ImageButton>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
+            editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
             
             //connect to computer
             connectButton.Click += delegate
@@ -43,6 +52,27 @@ namespace IronMan_mobile2
                 Toast.MakeText(this.Activity, "IP Address is empty", ToastLength.Long).Show();
             };
             
+            textBox.EditorAction += delegate(object sender, TextView.EditorActionEventArgs args)
+            {
+                if (args.ActionId == ImeAction.Done)
+                    textBox.Enabled = false;
+            };
+
+            //enable editing
+            editButton.Click += delegate
+            {
+                textBox.RequestFocus();
+                if (textBox.IsFocused)
+                {
+                    textBox.Enabled = true;
+                    InputMethodManager imm =
+                        Activity.GetSystemService(Context.InputMethodService) as InputMethodManager;  
+                    imm?.ShowSoftInput(textBox, ShowFlags.Forced);
+                }
+                else textBox.Enabled = false;
+            };
+            
+
             // check to see if we can actually record - if we can, assign the event to the button
             string rec = Android.Content.PM.PackageManager.FeatureMicrophone;
             if (rec != "android.hardware.microphone")
