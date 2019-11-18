@@ -52,7 +52,6 @@ namespace IronMan_mobile2
             View view = LayoutInflater.From(context).Inflate(Resource.Layout.custom_tab, null);
             TextView textView = view.FindViewById<TextView>(Resource.Id.tabTextView);
             textView.Text = titels[position];
-            textView.SetTextColor(Color.Black);
             return view;
         }
 

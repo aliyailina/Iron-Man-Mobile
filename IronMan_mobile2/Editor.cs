@@ -156,6 +156,7 @@ namespace IronMan_mobile2
                         {
                             LayoutInflater layoutInflater = LayoutInflater.From(Context);
                             View view = layoutInflater.Inflate(Resource.Layout.file_name_dialog, null);
+                            view.SetBackgroundResource(Resource.Drawable.ip_background);
                             AlertDialog.Builder builder = new AlertDialog.Builder(Context);
                             builder.SetTitle("Input file name");
                             EditText input = view.FindViewById<EditText>(Resource.Id.input);

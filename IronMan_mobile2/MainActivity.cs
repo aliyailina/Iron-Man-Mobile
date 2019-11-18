@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
-using Android.Support.V7.Widget;
 using Android.Views;
-using Android.Widget;
-using Color = Android.Graphics.Color;
+using Calligraphy;
 
 namespace IronMan_mobile2
 {
@@ -21,6 +17,11 @@ namespace IronMan_mobile2
         private TabLayout tabLayout;
         private ViewPager viewPager;
         public static List<string> scriptList = new List<string>();
+        
+        protected override void AttachBaseContext(Context context)
+        {
+            base.AttachBaseContext(CalligraphyContextWrapper.Wrap(context));
+        }
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,8 +36,8 @@ namespace IronMan_mobile2
             tabLayout.SetBackgroundResource(Resource.Drawable.tab_background);
 
             adapter = new TabAdapter(SupportFragmentManager, this);
-            adapter.AddFragment(new Editor(), " ");
-            adapter.AddFragment(new Scripts(), " ");
+            adapter.AddFragment(new Editor(), "EDITOR");
+            adapter.AddFragment(new Scripts(), "SCRIPTS");
             viewPager.Adapter = adapter;
             tabLayout.SetupWithViewPager(viewPager);
             HightLightCurrentTab(0); 

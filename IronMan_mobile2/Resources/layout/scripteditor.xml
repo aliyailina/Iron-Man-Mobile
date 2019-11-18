@@ -27,7 +27,9 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_weight="19"/>
+                android:layout_weight="19"
+                android:inputType="text"
+                android:imeOptions="actionDone"/>
 
         <Button
                 android:layout_width="wrap_content"
@@ -61,11 +63,10 @@
                 android:id="@+id/textYourText"
                 android:textColor="@android:color/black"
                 android:layout_margin="5dp"
-                android:typeface="monospace"
+                android:typeface="normal"
                 android:textSize="18sp"
                 android:inputType="text"
-                android:imeOptions="actionDone"
-                android:textStyle="bold"/>
+                android:imeOptions="actionDone"/>
     </LinearLayout>
 
     
@@ -81,6 +82,10 @@
             android:weightSum="5">
 
         <Button
+                fontPath="fonts/squares_bold.ttf"
+                android:text="EDIT"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnEdit"
@@ -98,6 +103,10 @@
         android:layout_weight="1"/>
 
         <Button
+                fontPath="fonts/squares_bold.ttf"
+                android:text="SAVE"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/save_script"
