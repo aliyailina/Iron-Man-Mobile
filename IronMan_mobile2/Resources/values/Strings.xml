@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IronMan_mobile</string>
+    <string name="app_name">Iron Man</string>
     <string name="action_settings">Settings</string>
     <string name="messageSpeakNow">Speak now!</string>
     <string name="save_script">Save Script</string>

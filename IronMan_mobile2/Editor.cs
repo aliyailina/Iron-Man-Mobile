@@ -4,11 +4,16 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Speech;
+using Android.Support.CoreUtils;
+using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using FFImageLoading;
 using Java.Util;
 using Fragment = Android.Support.V4.App.Fragment;
+
+
 
 namespace IronMan_mobile2
 {
@@ -23,6 +28,7 @@ namespace IronMan_mobile2
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
+        private LinearLayout linlay;
         public static List<string> scriptsList = MainActivity.scriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -44,6 +50,9 @@ namespace IronMan_mobile2
             recButton = view.FindViewById<ImageButton>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
+            linlay = view.FindViewById<LinearLayout>(Resource.Id.linearLayout3);
+            
+           linlay.SetBackgroundResource(Resource.Drawable.buttons_bar_vector);
             
             //connect to computer
             connectButton.Click += delegate
@@ -156,8 +165,8 @@ namespace IronMan_mobile2
                         {
                             LayoutInflater layoutInflater = LayoutInflater.From(Context);
                             View view = layoutInflater.Inflate(Resource.Layout.file_name_dialog, null);
-                            view.SetBackgroundResource(Resource.Drawable.ip_background);
-                            AlertDialog.Builder builder = new AlertDialog.Builder(Context);
+                            //view.SetBackgroundResource(Resource.Drawable.ip_background);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Context, Resource.Style.AlertDialogTheme);
                             builder.SetTitle("Input file name");
                             EditText input = view.FindViewById<EditText>(Resource.Id.input);
                             builder.SetView(view);
@@ -171,7 +180,9 @@ namespace IronMan_mobile2
                                         ToastLength.Short).Show();
                                 })
                                 .SetNegativeButton("Cancel", delegate { builder.Dispose(); });
-                            builder.Create().Show();
+                            var dialog = builder.Create();
+                            dialog.Show();
+                            dialog.Window.SetBackgroundDrawableResource(Resource.Drawable.ip_background);
                         }
                     };
                 }

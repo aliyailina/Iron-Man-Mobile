@@ -36,7 +36,6 @@ namespace IronMan_mobile2
                         }
                     }
                 }
-                
             }
             catch (SocketException e)
             {

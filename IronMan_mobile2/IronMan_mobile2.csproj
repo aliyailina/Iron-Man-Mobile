@@ -95,12 +95,15 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable\buttons_bar.png" />
+    <AndroidResource Include="Resources\drawable\buttons_bar_svg.svg" />
+    <AndroidResource Include="Resources\drawable\buttons_bar_vector.xml" />
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
     <AndroidResource Include="Resources\drawable\connect_background.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_text.png" />
     <AndroidResource Include="Resources\drawable\ip_background.xml" />
     <AndroidResource Include="Resources\drawable\ip_textindicator.xml" />
+    <AndroidResource Include="Resources\drawable\logo.ico" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
     <AndroidResource Include="Resources\drawable\tab_shadow.xml" />
@@ -118,7 +121,9 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CallygraphyXamarin" Version="2.3.0" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\font" />

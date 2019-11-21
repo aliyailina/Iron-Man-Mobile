@@ -9,6 +9,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="fontPath">fonts/squares_bold.ttf</item>
+    </style>
+
     <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">60sp</item>
         <item name="android:textColor">#FFF</item>

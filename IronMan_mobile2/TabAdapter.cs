@@ -54,6 +54,5 @@ namespace IronMan_mobile2
             textView.Text = titels[position];
             return view;
         }
-
     }
 }

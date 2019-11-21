@@ -10,7 +10,7 @@ using Calligraphy;
 
 namespace IronMan_mobile2
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", Icon = "@drawable/logo", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
         private TabAdapter adapter;
