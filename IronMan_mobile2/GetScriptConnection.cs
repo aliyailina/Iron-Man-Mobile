@@ -10,7 +10,7 @@ namespace IronMan_mobile2
         private static void StartConnection(string IP)
         {
             const int port = 13000;
-            string[] files = null;
+            string[] files;
             TcpClient client = null;
             try
             {

@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Android.Util;
 
 namespace IronMan_mobile2
 {
@@ -9,7 +10,7 @@ namespace IronMan_mobile2
     {
         private static void StartConnection(string IP, string fileName, string script)
         {
-            const int port = 8080;
+            const int port = 6121;
             TcpClient client = null;
             try
             {
@@ -39,7 +40,8 @@ namespace IronMan_mobile2
             }
             catch (SocketException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
+                Log.Error("YOUR MESSAGE", "message", e);
             }
             finally
             {

@@ -9,7 +9,6 @@ using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
-using FFImageLoading;
 using Java.Util;
 using Fragment = Android.Support.V4.App.Fragment;
 
@@ -52,13 +51,10 @@ namespace IronMan_mobile2
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
             linlay = view.FindViewById<LinearLayout>(Resource.Id.linearLayout3);
             
-           linlay.SetBackgroundResource(Resource.Drawable.buttons_bar_vector);
-            
             //connect to computer
             connectButton.Click += delegate
             {
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
-                Toast.MakeText(this.Activity, "IP Address is empty", ToastLength.Long).Show();
             };
             
             textBox.EditorAction += delegate(object sender, TextView.EditorActionEventArgs args)
