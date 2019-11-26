@@ -61,6 +61,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts.cs" />
+    <Compile Include="ScriptsAdapter.cs" />
     <Compile Include="SendScriptConnection.cs" />
     <Compile Include="TabAdapter.cs" />
   </ItemGroup>
@@ -104,6 +105,8 @@
     <AndroidResource Include="Resources\drawable\ip_background.xml" />
     <AndroidResource Include="Resources\drawable\ip_textindicator.xml" />
     <AndroidResource Include="Resources\drawable\logo.ico" />
+    <AndroidResource Include="Resources\drawable\run_background.xml" />
+    <AndroidResource Include="Resources\drawable\run_bar_background.xml" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
     <AndroidResource Include="Resources\drawable\tab_shadow.xml" />

@@ -7,12 +7,25 @@
         android:layout_height="match_parent">
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="76.67dp"
             android:layout_alignParentBottom="true">
+        
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="58.3dp"
+                        android:background="@drawable/run_bar_background"
+                        android:layout_alignParentBottom="true"/>
+        
         <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="143.3dp"
+                android:layout_height="42.67dp"
                 android:text="Run"
+                android:textColor="#295FB6"
+                android:elevation="10dp"
+                fontPath="fonts/squares_bold.ttf"
+                android:background="@drawable/run_background"
+                android:layout_marginEnd="108.33dp"
+                android:layout_marginStart="108.33dp"
+                android:layout_marginBottom="34dp"
                 android:id="@+id/startseq"/>
     </RelativeLayout>
 

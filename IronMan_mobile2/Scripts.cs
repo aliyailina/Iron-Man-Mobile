@@ -1,6 +1,7 @@
 ﻿using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
+using Android.Widget;
 
 namespace IronMan_mobile2
 {
@@ -8,7 +9,11 @@ namespace IronMan_mobile2
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            return inflater.Inflate(Resource.Layout.scriptviewer, container, false);
+            ScriptsAdapter adapter = new ScriptsAdapter(Context, Editor.scriptsList);
+            View view = inflater.Inflate(Resource.Layout.scriptviewer, null);
+            ListView lst = view.FindViewById<ListView>(Resource.Id.scriptviewer);
+            lst.Adapter = adapter;
+            return view;
         }
     }
 }

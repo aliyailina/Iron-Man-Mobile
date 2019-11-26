@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,36 +11,34 @@ namespace IronMan_mobile2
         private static void StartConnection(string IP)
         {
             const int port = 13000;
-            string[] files;
-            TcpClient client = null;
             try
             {
-                client = new TcpClient(IP, port);
-                NetworkStream stream = client.GetStream();
-                byte[] buffer = new byte[5000];
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IP), port);
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.Connect(endPoint);
+                byte[] arr = new byte[1024];
+                string[] files;
+                int bytes = 0;
                 do
                 {
-                    var fileBytes = stream.Read(buffer, 0, buffer.Length);
-                    files = Encoding.Unicode.GetString(buffer, 0, fileBytes).Split("*");
-                    
-                } while (stream.DataAvailable);
+                    bytes = socket.Receive(arr);
+                    files = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
+                } while (socket.Available > 0);
 
                 foreach (var file in files)
                 {
-                    string newScript = file;
-                    if (!Editor.scriptsList.Contains(newScript) || !string.IsNullOrWhiteSpace(file))
+                    if (!Editor.scriptsList.Contains(file))
                     {
-                        Editor.scriptsList.Add(newScript);
+                        Editor.scriptsList.Add(file);
                     }
                 }
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                client?.Close();
+                Console.WriteLine(e.Message);
             }
         }
         

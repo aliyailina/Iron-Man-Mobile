@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Speech;
-using Android.Support.CoreUtils;
-using Android.Util;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -27,7 +25,7 @@ namespace IronMan_mobile2
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
-        private LinearLayout linlay;
+        public static string[] filmData;
         public static List<string> scriptsList = MainActivity.scriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -49,12 +47,12 @@ namespace IronMan_mobile2
             recButton = view.FindViewById<ImageButton>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
-            linlay = view.FindViewById<LinearLayout>(Resource.Id.linearLayout3);
             
             //connect to computer
             connectButton.Click += delegate
             {
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
+                textBox.Text = String.Join("\n", filmData);
             };
             
             textBox.EditorAction += delegate(object sender, TextView.EditorActionEventArgs args)

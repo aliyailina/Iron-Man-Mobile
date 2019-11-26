@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,41 +12,31 @@ namespace IronMan_mobile2
         private static void StartConnection(string IP, string fileName, string script)
         {
             const int port = 6121;
-            TcpClient client = null;
             try
             {
-                client = new TcpClient(IP, port);
-                NetworkStream stream = client.GetStream();
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IP), port);
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.Connect(endPoint);
                 var fileNameAndScript = fileName + "*" + script;
                 var fileNameAndScriptData = Encoding.UTF8.GetBytes(fileNameAndScript);
-                while (true)
+                socket.Send(fileNameAndScriptData);
+                
+                /*string[] filmData = Editor.filmData;
+                byte[] arr = new byte[1024];
+                int bytes = 0;
+                do
                 {
-                    stream.Write(fileNameAndScriptData, 0, fileNameAndScriptData.Length);
-                    byte[] buffer = new byte[256];
-                    string[] files;
-                    do
-                    {
-                        var fileBytes = stream.Read(buffer, 0, buffer.Length);
-                        files = Encoding.Unicode.GetString(buffer, 0, fileBytes).Split("*");
-                    } while (stream.DataAvailable);
-                    foreach (var file in files)
-                    {
-                        string newScript = file;
-                        if (Editor.scriptsList.Contains(newScript) == false)
-                        {
-                            Editor.scriptsList.Add(newScript);
-                        }
-                    }
-                }
+                    bytes = socket.Receive(arr);
+                    filmData = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
+                } while (socket.Available > 0);*/
+                
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+
             }
-            catch (SocketException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Log.Error("YOUR MESSAGE", "message", e);
-            }
-            finally
-            {
-                client?.Close();
             }
         }
         
