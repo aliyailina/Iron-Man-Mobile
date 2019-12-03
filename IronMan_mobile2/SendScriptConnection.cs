@@ -20,14 +20,12 @@ namespace IronMan_mobile2
                 var fileNameAndScript = fileName + "*" + script;
                 var fileNameAndScriptData = Encoding.UTF8.GetBytes(fileNameAndScript);
                 socket.Send(fileNameAndScriptData);
-                
-                /*string[] filmData = Editor.filmData;
-                byte[] arr = new byte[1024];
+                /*byte[] arr = new byte[1024];
                 int bytes = 0;
                 do
                 {
                     bytes = socket.Receive(arr);
-                    filmData = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
+                    Editor.filmData = Encoding.UTF8.GetString(arr, 0, bytes).Split("*");
                 } while (socket.Available > 0);*/
                 
                 socket.Shutdown(SocketShutdown.Both);

@@ -60,6 +60,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Running.cs" />
     <Compile Include="Scripts.cs" />
     <Compile Include="ScriptsAdapter.cs" />
     <Compile Include="SendScriptConnection.cs" />
@@ -74,47 +75,66 @@
     <AndroidResource Include="Resources\drawable-hdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-ldpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-ldpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-mdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_text.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\iron_man_running.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable\buttons_bar.png" />
-    <AndroidResource Include="Resources\drawable\buttons_bar_svg.svg" />
-    <AndroidResource Include="Resources\drawable\buttons_bar_vector.xml" />
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
     <AndroidResource Include="Resources\drawable\connect_background.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_text.png" />
     <AndroidResource Include="Resources\drawable\ip_background.xml" />
-    <AndroidResource Include="Resources\drawable\ip_textindicator.xml" />
+    <AndroidResource Include="Resources\drawable\iron_man_running.png">
+      <SubType>Designer</SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\logo.ico" />
+    <AndroidResource Include="Resources\drawable\recIcon.png" />
+    <AndroidResource Include="Resources\drawable\running_background.xml" />
     <AndroidResource Include="Resources\drawable\run_background.xml" />
     <AndroidResource Include="Resources\drawable\run_bar_background.xml" />
+    <AndroidResource Include="Resources\drawable\script_background.xml" />
+    <AndroidResource Include="Resources\drawable\script_indicator.xml" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
-    <AndroidResource Include="Resources\drawable\tab_shadow.xml" />
     <AndroidResource Include="Resources\layout\activity_main.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\custom_tab.xml" />
+    <AndroidResource Include="Resources\layout\file_info_dialog.xml" />
     <AndroidResource Include="Resources\layout\file_name_dialog.xml" />
+    <AndroidResource Include="Resources\layout\running.xml" />
     <AndroidResource Include="Resources\layout\script.xml" />
     <AndroidResource Include="Resources\layout\scripteditor.xml" />
     <AndroidResource Include="Resources\layout\scriptviewer.xml" />

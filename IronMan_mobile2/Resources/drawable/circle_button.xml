@@ -1,4 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-android:shape="oval">
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+        android:shape="oval">
+            <solid android:color="#FFF"/>
+            <size android:width="56.67dp"
+                  android:height="56.67dp"/>
+            <stroke android:width="1dp"
+            android:color="@color/mainColor"/>
+        </shape>
+    </item>
+    <item
+        android:drawable="@drawable/recIcon"
+        android:top="17dp"
+        android:bottom="15.67dp"
+        android:left="19.33dp"
+        android:right="19.33dp"/>
+</layer-list>

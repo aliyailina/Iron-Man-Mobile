@@ -5,41 +5,52 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="76.67dp"
-            android:layout_alignParentBottom="true">
-        
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="58.3dp"
-                        android:background="@drawable/run_bar_background"
-                        android:layout_alignParentBottom="true"/>
-        
-        <Button
-                android:layout_width="143.3dp"
-                android:layout_height="42.67dp"
-                android:text="Run"
-                android:textColor="#295FB6"
-                android:elevation="10dp"
-                fontPath="fonts/squares_bold.ttf"
-                android:background="@drawable/run_background"
-                android:layout_marginEnd="108.33dp"
-                android:layout_marginStart="108.33dp"
-                android:layout_marginBottom="34dp"
-                android:id="@+id/startseq"/>
-    </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="534dp"
+            android:orientation="vertical">
+        <TextView android:layout_width="334dp"
+                  android:layout_height="59dp"
+                  android:text="@string/scriptviewer_text"
+                  android:gravity="center"
+                  android:layout_gravity="center|top"/>
 
         <ListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/scriptviewer"
+                android:layout_gravity="left|bottom"
                 tools:listitem="@layout/script"/>
+    </LinearLayout>
 
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="77dp"
+            android:layout_alignParentBottom="true">
+
+        <Button
+                android:layout_width="143dp"
+                android:layout_height="43dp"
+                android:text="Run"
+                android:textColor="@color/mainColor"
+                android:textSize="20sp"
+                fontPath="fonts/squares_bold.ttf"
+                android:background="@drawable/run_background"
+                android:layout_marginEnd="109dp"
+                android:layout_marginStart="109dp"
+                android:id="@+id/startseq"
+                android:layout_alignParentTop="true"/>
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:background="@drawable/run_bar_background"
+                        android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
-
+    <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    
 </RelativeLayout>

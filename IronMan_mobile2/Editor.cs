@@ -7,6 +7,7 @@ using Android.Speech;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
+using Java.Lang;
 using Java.Util;
 using Fragment = Android.Support.V4.App.Fragment;
 
@@ -19,13 +20,13 @@ namespace IronMan_mobile2
         private bool isRecording;
         private readonly int VOICE = 10;
         private EditText textBox;
-        private ImageButton recButton;
+        private Button recButton;
         private EditText etIPaddress;
         private string serIpAddress;
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
-        public static string[] filmData;
+        //public static string[] filmData;
         public static List<string> scriptsList = MainActivity.scriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -39,12 +40,14 @@ namespace IronMan_mobile2
             
             //disable textBox editing
             textBox.Enabled = false;
-            
+            textBox.SetMaxLines(10);
+            textBox.SetHorizontallyScrolling(false);
+
             saveScript = view.FindViewById<Button>(Resource.Id.save_script);
 
             //find IP field
             etIPaddress = view.FindViewById<EditText>(Resource.Id.edIPaddress);
-            recButton = view.FindViewById<ImageButton>(Resource.Id.btnRecord);
+            recButton = view.FindViewById<Button>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
             
@@ -52,7 +55,6 @@ namespace IronMan_mobile2
             connectButton.Click += delegate
             {
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
-                textBox.Text = String.Join("\n", filmData);
             };
             
             textBox.EditorAction += delegate(object sender, TextView.EditorActionEventArgs args)
@@ -172,6 +174,11 @@ namespace IronMan_mobile2
                                         textBox.Text);
                                     Toast.MakeText(Activity, "Script " + input.Text + " has been saved",
                                         ToastLength.Short).Show();
+                                    /*Thread.Sleep(1000);
+                                    foreach (var film in filmData)
+                                    {
+                                        textBox.Text += '\n' + film;
+                                    }*/
                                 })
                                 .SetNegativeButton("Cancel", delegate { builder.Dispose(); });
                             var dialog = builder.Create();

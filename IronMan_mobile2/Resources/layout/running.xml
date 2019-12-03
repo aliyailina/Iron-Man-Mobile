@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/running"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:background="@color/mainColor">
+    <ImageView
+            android:id="@+id/white_rectangle"
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/running_background"
+            android:layout_marginBottom="92dp"
+    />
+    
+    <ImageView
+            android:layout_width="182dp"
+            android:layout_height="163dp"
+            android:src="@drawable/iron_man_running"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"/>
+    
+    <TextView
+              android:layout_width="wrap_content" 
+              android:layout_height="wrap_content"
+              android:text="RUNNING"
+              android:textSize="37sp"
+              fontPath="fonts/squares_bold.ttf"
+              android:layout_alignParentTop="true"
+              android:layout_centerInParent="true"
+              android:layout_marginTop="183dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please wait..."
+            android:textSize="30sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="220dp"/>
+
+    <Button
+            android:layout_width="143dp"
+            android:layout_height="43dp"
+            android:text="BACK"
+            android:textColor="@color/mainColor"
+            android:textSize="20sp"
+            fontPath="fonts/squares_bold.ttf"
+            android:background="@drawable/run_background"
+            android:layout_marginEnd="109dp"
+            android:layout_marginStart="109dp"
+            android:id="@+id/startseq"
+            android:layout_marginBottom="23dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"/>
+
+</RelativeLayout>

@@ -9,4 +9,5 @@
     <string name="script_editor">Script editor</string>
     <string name="start_script">Start</string>
     <string name="run">Run</string>
+    <string name="scriptviewer_text">Please choose your script for RPA running. You can choose a several scripts or combine scripts for your work</string>
 </resources>

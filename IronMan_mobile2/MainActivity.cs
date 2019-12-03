@@ -14,7 +14,7 @@ namespace IronMan_mobile2
     public class MainActivity : AppCompatActivity
     {
         private TabAdapter adapter;
-        private TabLayout tabLayout;
+        private static TabLayout tabLayout;
         private ViewPager viewPager;
         public static List<string> scriptList = new List<string>();
         
@@ -43,6 +43,11 @@ namespace IronMan_mobile2
             HightLightCurrentTab(0); 
             viewPager.PageSelected += (sender, e) => HightLightCurrentTab(e.Position);
             viewPager.PageScrollStateChanged += (sender, e) => { };
+        }
+
+        public static void HideTabBar()
+        {
+            tabLayout.Visibility = ViewStates.Gone;
         }
 
         private void HightLightCurrentTab(int position)

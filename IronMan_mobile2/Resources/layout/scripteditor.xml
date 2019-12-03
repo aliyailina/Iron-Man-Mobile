@@ -69,53 +69,57 @@
                 android:imeOptions="actionDone"/>
     </LinearLayout>
 
-    
+   
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="66.34dp">
     <LinearLayout
             android:orientation="horizontal"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons_bar_vector"
+            android:layout_height="58.3dp"
+            android:background="@drawable/buttons_bar"
             android:id="@+id/linearLayout3"
-            android:layout_weight="1"
-            android:weightSum="5">
+            android:layout_alignParentBottom="true"
+            android:weightSum="2">
 
         <Button
                 fontPath="fonts/squares_bold.ttf"
                 android:text="EDIT"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnEdit"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="center"
+                android:layout_marginStart="39dp"
+                android:gravity="bottom"/>
         
-        
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/circle_button"
-                android:id="@+id/btnRecord"
-                android:src="@drawable/start_recording"
-        android:layout_weight="1"/>
-
         <Button
                 fontPath="fonts/squares_bold.ttf"
                 android:text="SAVE"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/save_script"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:layout_gravity="bottom"/>
-        
-        
-        
+                android:layout_gravity="center"
+                android:layout_marginEnd="39dp"
+                android:gravity="end|bottom"/>
     </LinearLayout>
+
+        <Button
+                android:layout_width="56.67dp"
+                android:layout_height="56.67dp"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/circle_button"
+                android:id="@+id/btnRecord"
+                android:contentDescription="Record button with micro"/>
+    </RelativeLayout>
 </LinearLayout>
 
