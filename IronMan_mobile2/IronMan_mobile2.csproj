@@ -72,6 +72,7 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\anim\run_bar_anim.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_ip.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_text.png" />
@@ -120,12 +121,16 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\logo.ico" />
+    <AndroidResource Include="Resources\drawable\okay_btn.xml" />
+    <AndroidResource Include="Resources\drawable\plus_btn.xml" />
     <AndroidResource Include="Resources\drawable\recIcon.png" />
     <AndroidResource Include="Resources\drawable\running_background.xml" />
     <AndroidResource Include="Resources\drawable\run_background.xml" />
     <AndroidResource Include="Resources\drawable\run_bar_background.xml" />
     <AndroidResource Include="Resources\drawable\script_background.xml" />
     <AndroidResource Include="Resources\drawable\script_indicator.xml" />
+    <AndroidResource Include="Resources\drawable\script_info_background.xml" />
+    <AndroidResource Include="Resources\drawable\script_info_top.xml" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
     <AndroidResource Include="Resources\layout\activity_main.axml">

@@ -11,6 +11,12 @@ namespace IronMan_mobile2
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.running, container, false);
+            Button back = view.FindViewById<Button>(Resource.Id.back);
+            back.Click += delegate
+            {
+                FragmentManager.PopBackStackImmediate();
+                MainActivity.HideTabBar(1);
+            };
             return view;
         }
     }

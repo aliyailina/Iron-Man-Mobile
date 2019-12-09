@@ -45,9 +45,12 @@ namespace IronMan_mobile2
             viewPager.PageScrollStateChanged += (sender, e) => { };
         }
 
-        public static void HideTabBar()
+        public static void HideTabBar(int id)
         {
-            tabLayout.Visibility = ViewStates.Gone;
+            if(id == 0)
+                tabLayout.Visibility = ViewStates.Gone;
+            else if (id == 1)
+                tabLayout.Visibility = ViewStates.Visible;
         }
 
         private void HightLightCurrentTab(int position)

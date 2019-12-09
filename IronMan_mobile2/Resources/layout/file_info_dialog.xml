@@ -1,7 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="334dp"
+              android:layout_height="504dp">
+    <TextView 
+            android:layout_width="match_parent" android:layout_height="59dp"
+            android:background="@drawable/script_info_top"
+            android:text="SCRIPT INFO"
+            android:textSize="20sp"
+            fontPath="fonts/squares_bold.ttf"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+    
+    <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREATED DATE"
+            fontPath="fonts/squares_bold.ttf"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="36dp"
+            android:textSize="20sp"/>
+    
+    <TextView 
+            android:id="@+id/creating_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"/>
+    
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMMANDS"
+            fontPath="fonts/squares_bold.ttf"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="9dp"
+            android:textSize="20sp"
+            android:layout_marginTop="14dp"/>
 
+    <TextView
+            android:id="@+id/script_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"/>
+    
+    <Button android:layout_width="143dp" android:layout_height="43dp"
+            android:id="@+id/ok_btn"
+            android:text="OKAY"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            fontPath="fonts/squares_bold.ttf"
+            android:background="@drawable/okay_btn"
+            android:layout_gravity="center|bottom"
+            android:gravity="center"
+            android:layout_marginBottom="26dp"/>
 </LinearLayout>

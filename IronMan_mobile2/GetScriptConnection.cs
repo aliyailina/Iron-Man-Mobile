@@ -3,6 +3,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Android.App;
+using Android.Widget;
 
 namespace IronMan_mobile2
 {
@@ -16,7 +18,7 @@ namespace IronMan_mobile2
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IP), port);
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 socket.Connect(endPoint);
-                byte[] arr = new byte[1024];
+                byte[] arr = new byte[20000];
                 string[] files;
                 int bytes = 0;
                 do
@@ -32,13 +34,15 @@ namespace IronMan_mobile2
                         Editor.scriptsList.Add(file);
                     }
                 }
+
+                Editor.ConnectMessage = "Connected";
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
 
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Editor.ConnectMessage = "Not connected";
             }
         }
         

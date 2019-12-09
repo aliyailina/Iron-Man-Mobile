@@ -26,7 +26,9 @@ namespace IronMan_mobile2
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
-        //public static string[] filmData;
+        public static string ConnectMessage { get; set; } = null;
+
+       // public static string[] filmData;
         public static List<string> scriptsList = MainActivity.scriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -55,6 +57,15 @@ namespace IronMan_mobile2
             connectButton.Click += delegate
             {
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
+                while (true)
+                {
+                    if (ConnectMessage != null)
+                    {
+                        Thread.Sleep(3000);
+                        Toast.MakeText(Activity, ConnectMessage, ToastLength.Long).Show();
+                        break;
+                    }
+                }
             };
             
             textBox.EditorAction += delegate(object sender, TextView.EditorActionEventArgs args)

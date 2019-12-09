@@ -8,6 +8,13 @@
         android:minWidth="25px"
         android:weightSum="8">
 
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Please enter IP address"
+              android:textColor="#164DA7"
+              android:layout_marginTop="10dp"
+              android:layout_marginStart="5dp"
+              android:textSize="20sp"/>
+    
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -16,8 +23,7 @@
             android:layout_marginTop="10dp"
             android:layout_margin="5dp"
             android:weightSum="20">
-
-
+        
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -51,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:id="@+id/linearLayout2"

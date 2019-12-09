@@ -50,7 +50,7 @@
             android:background="@drawable/run_background"
             android:layout_marginEnd="109dp"
             android:layout_marginStart="109dp"
-            android:id="@+id/startseq"
+            android:id="@+id/back"
             android:layout_marginBottom="23dp"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"

@@ -13,9 +13,12 @@
             android:textSize="20sp"
             android:gravity="center"
             android:background="@drawable/script_background"/>
-        <Button
+        <ImageButton
+                android:id="@+id/plus_btn"
                 android:layout_width="59dp"
                 android:layout_height="49dp"
                 android:background="@drawable/script_indicator"
+                android:src="@drawable/plus_btn"
+                android:padding="10dp"
                 android:layout_gravity="end"/>
 </TableRow>

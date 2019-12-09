@@ -2,11 +2,13 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <LinearLayout
+            android:id="@+id/linearLayoutparent"
             android:layout_width="match_parent"
             android:layout_height="534dp"
             android:orientation="vertical">
@@ -14,17 +16,23 @@
                   android:layout_height="59dp"
                   android:text="@string/scriptviewer_text"
                   android:gravity="center"
+                  android:layout_marginTop="20dp"
                   android:layout_gravity="center|top"/>
 
         <ListView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/scriptviewer"
-                android:layout_gravity="left|bottom"
-                tools:listitem="@layout/script"/>
+                android:layout_marginTop="13dp"
+                android:layout_gravity="start|bottom"
+                tools:listitem="@layout/script"
+                android:divider="@null"
+                
+                android:smoothScrollbar="true"/>
     </LinearLayout>
 
     <RelativeLayout
+            android:id="@+id/runBar"
             android:layout_width="match_parent"
             android:layout_height="77dp"
             android:layout_alignParentBottom="true">
@@ -47,10 +55,5 @@
                         android:background="@drawable/run_bar_background"
                         android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-
-    <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
     
 </RelativeLayout>
