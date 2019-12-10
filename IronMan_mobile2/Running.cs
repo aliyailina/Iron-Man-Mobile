@@ -12,11 +12,14 @@ namespace IronMan_mobile2
         {
             View view = inflater.Inflate(Resource.Layout.running, container, false);
             Button back = view.FindViewById<Button>(Resource.Id.back);
+            
+            //when "BACK" is clicked
             back.Click += delegate
             {
-                FragmentManager.PopBackStackImmediate();
-                MainActivity.HideTabBar(1);
+                FragmentManager.PopBackStackImmediate(); //replace the fragment with previous (Scripts)
+                MainActivity.HideTabBar(1); //show tab bar
             };
+            
             return view;
         }
     }

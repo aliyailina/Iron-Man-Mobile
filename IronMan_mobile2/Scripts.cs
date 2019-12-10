@@ -50,6 +50,7 @@ namespace IronMan_mobile2
             return view;
         }
         
+        //animated showing Run Bar
         public static void ShowRunBar()
         {
             runBar.Animate().TranslationY(0);

@@ -16,7 +16,7 @@
     <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CREATED DATE"
+            android:text="DATE CREATED"
             fontPath="fonts/squares_bold.ttf"
             android:textColor="@android:color/black"
             android:layout_marginStart="9dp"
@@ -47,7 +47,7 @@
     
     <Button android:layout_width="143dp" android:layout_height="43dp"
             android:id="@+id/ok_btn"
-            android:text="OKAY"
+            android:text="OK"
             android:textSize="20sp"
             android:textColor="@android:color/white"
             fontPath="fonts/squares_bold.ttf"
