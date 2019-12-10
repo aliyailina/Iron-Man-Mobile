@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Mime;
 using Android.App;
@@ -49,25 +50,39 @@ namespace IronMan_mobile2
                 ScriptsViewHolder vh = holder as ScriptsViewHolder;
                 
                 vh.scriptName.Text = list[position];
-                ((ScriptsViewHolder) holder).btnPlus.Click += delegate
+
+                void BtnPlusOnClick(object sender, EventArgs args)
                 {
                     Scripts.ShowRunBar();
-                    ((ScriptsViewHolder) holder).btnPlus.SetImageResource(Resource.Id.checkbox);
-                };
-                ((ScriptsViewHolder) holder).ItemView.Click += (sender, e) =>
-                {
-                    LayoutInflater layoutInflater = LayoutInflater.From(context);
-                    View v = layoutInflater.Inflate(Resource.Layout.file_info_dialog, null);
-                    Button okayBtn = v.FindViewById<Button>(Resource.Id.ok_btn);
-                    //view.SetBackgroundResource(Resource.Drawable.ip_background);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context, Resource.Style.AlertDialogTheme);
-                    builder.SetView(v);
-                    var dialog = builder.Create();
-                    dialog.Show();
-                    dialog.Window.SetBackgroundDrawableResource(Resource.Drawable.script_info_background);
-                    okayBtn.Click += delegate { dialog.Hide(); };
-                };
+                    ((ScriptsViewHolder) holder).btnPlus.SetImageResource(Resource.Drawable.chech_mark);
+                }
+
+                //((ScriptsViewHolder) holder).btnPlus.Click -= BtnPlusOnClick;
+                vh.btnPlus.Click -= BtnPlusOnClick;
+
+                //((ScriptsViewHolder) holder).btnPlus.Click += BtnPlusOnClick;
+                vh.btnPlus.Click += BtnPlusOnClick;
                 
+                //((ScriptsViewHolder) holder).ItemView.Click -= ScriptOnClick;
+                vh.ItemView.Click -= ScriptOnClick;
+
+                vh.ItemView.Click += ScriptOnClick;
+
+                //((ScriptsViewHolder) holder).ItemView.Click += ScriptOnClick;
+            }
+
+            private void ScriptOnClick(object sender, EventArgs e)
+            {
+                LayoutInflater layoutInflater = LayoutInflater.From(context);
+                View v = layoutInflater.Inflate(Resource.Layout.file_info_dialog, null);
+                Button okayBtn = v.FindViewById<Button>(Resource.Id.ok_btn);
+                //view.SetBackgroundResource(Resource.Drawable.ip_background);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context, Resource.Style.AlertDialogTheme);
+                builder.SetView(v);
+                var dialog = builder.Create();
+                dialog.Show();
+                dialog.Window.SetBackgroundDrawableResource(Resource.Drawable.script_info_background);
+                okayBtn.Click += delegate { dialog.Hide(); };
             }
             
 
