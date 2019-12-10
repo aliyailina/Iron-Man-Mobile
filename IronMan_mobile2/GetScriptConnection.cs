@@ -29,7 +29,7 @@ namespace IronMan_mobile2
 
                 foreach (var file in files)
                 {
-                    if (!Editor.scriptsList.Contains(file))
+                    if (!Editor.scriptsList.Contains(file) && !String.IsNullOrEmpty(file))
                     {
                         Editor.scriptsList.Add(file);
                     }

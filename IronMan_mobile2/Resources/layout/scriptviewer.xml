@@ -19,10 +19,11 @@
                   android:layout_marginTop="20dp"
                   android:layout_gravity="center|top"/>
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/scriptviewer"
+                android:scrollbars="vertical"
                 android:layout_marginTop="13dp"
                 android:layout_gravity="start|bottom"
                 tools:listitem="@layout/script"
