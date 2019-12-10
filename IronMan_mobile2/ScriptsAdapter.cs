@@ -45,6 +45,16 @@ namespace IronMan_mobile2
 
             public override int ItemCount => list.Count;
 
+            public override long GetItemId(int position)
+            {
+                return position;
+            }
+
+            public override int GetItemViewType(int position)
+            {
+                return position;
+            }
+
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
                 ScriptsViewHolder vh = holder as ScriptsViewHolder;
@@ -54,7 +64,7 @@ namespace IronMan_mobile2
                 void BtnPlusOnClick(object sender, EventArgs args)
                 {
                     Scripts.ShowRunBar();
-                    ((ScriptsViewHolder) holder).btnPlus.SetImageResource(Resource.Drawable.chech_mark);
+                    vh.btnPlus.SetImageResource(Resource.Drawable.chech_mark);
                 }
 
                 //((ScriptsViewHolder) holder).btnPlus.Click -= BtnPlusOnClick;

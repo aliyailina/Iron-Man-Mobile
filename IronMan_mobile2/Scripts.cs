@@ -43,7 +43,7 @@ namespace IronMan_mobile2
                 ft.Replace(Resource.Id.container, running);
                 ft.AddToBackStack(null);
                 ft.Commit();
-                
+
                 //hide TabLayout when running window is showed
                 MainActivity.HideTabBar(0);
             };
