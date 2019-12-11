@@ -65,6 +65,7 @@
     <Compile Include="Scripts.cs" />
     <Compile Include="ScriptsAdapter.cs" />
     <Compile Include="SendScriptConnection.cs" />
+    <Compile Include="SplashActivity.cs" />
     <Compile Include="TabAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-hdpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-hdpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-hdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-ldpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-ldpi\chech_mark.png" />
@@ -87,6 +89,7 @@
     <AndroidResource Include="Resources\drawable-ldpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-ldpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-ldpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-ldpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-mdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-mdpi\chech_mark.png" />
@@ -94,6 +97,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-mdpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-mdpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-mdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\chech_mark.png" />
@@ -101,6 +105,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\chech_mark.png" />
@@ -108,6 +113,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\chech_mark.png" />
@@ -115,6 +121,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_text.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\iron_man_running.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\recIcon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable\chech_mark.png">
@@ -143,6 +150,7 @@
     <AndroidResource Include="Resources\drawable\script_indicator.xml" />
     <AndroidResource Include="Resources\drawable\script_info_background.xml" />
     <AndroidResource Include="Resources\drawable\script_info_top.xml" />
+    <AndroidResource Include="Resources\drawable\splash_screen.png" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
     <AndroidResource Include="Resources\layout\activity_main.axml">
