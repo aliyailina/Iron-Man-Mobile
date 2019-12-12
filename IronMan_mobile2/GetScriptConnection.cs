@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Widget;
@@ -16,7 +17,10 @@ namespace IronMan_mobile2
             try
             {
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IP), port);
-                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                {
+                    SendTimeout = 3000, ReceiveTimeout = 3000
+                };
                 socket.Connect(endPoint);
                 byte[] arr = new byte[20000];
                 string[] files;

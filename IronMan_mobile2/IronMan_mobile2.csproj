@@ -83,6 +83,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-hdpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\wrong.png" />
     <AndroidResource Include="Resources\drawable-ldpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-ldpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_ip.png" />
@@ -91,6 +92,7 @@
     <AndroidResource Include="Resources\drawable-ldpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-ldpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-ldpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\wrong.png" />
     <AndroidResource Include="Resources\drawable-mdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-mdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_ip.png" />
@@ -99,6 +101,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-mdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-mdpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\wrong.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_ip.png" />
@@ -107,6 +110,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\wrong.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_ip.png" />
@@ -115,6 +119,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\wrong.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_ip.png" />
@@ -123,12 +128,14 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\recIcon.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\start_recording.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\wrong.png" />
     <AndroidResource Include="Resources\drawable\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable\chech_mark.png">
       <SubType>Designer</SubType>
       <Generator>
       </Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\check_mark_connect.xml" />
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
     <AndroidResource Include="Resources\drawable\connect_background.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
@@ -140,6 +147,7 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\logo.ico" />
+    <AndroidResource Include="Resources\drawable\not_connect.xml" />
     <AndroidResource Include="Resources\drawable\okay_btn.xml" />
     <AndroidResource Include="Resources\drawable\plus_btn.xml" />
     <AndroidResource Include="Resources\drawable\recIcon.png" />
@@ -153,6 +161,11 @@
     <AndroidResource Include="Resources\drawable\splash_screen.png" />
     <AndroidResource Include="Resources\drawable\start_recording.png" />
     <AndroidResource Include="Resources\drawable\tab_background.xml" />
+    <AndroidResource Include="Resources\drawable\wrong.png">
+      <SubType>Designer</SubType>
+      <Generator>
+      </Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_main.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

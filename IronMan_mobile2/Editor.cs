@@ -61,8 +61,16 @@ namespace IronMan_mobile2
                 {
                     if (ConnectMessage != null)
                     {
+                        if (ConnectMessage == "Connected")
+                        {
+                            Thread.Sleep(3000);
+                            connectButton.Text = null;
+                            connectButton.SetBackgroundResource(Resource.Drawable.check_mark_connect);
+                            break;
+                        }
                         Thread.Sleep(3000);
-                        Toast.MakeText(Activity, ConnectMessage, ToastLength.Long).Show();
+                        connectButton.Text = null;
+                        connectButton.SetBackgroundResource(Resource.Drawable.not_connect);
                         break;
                     }
                 }
