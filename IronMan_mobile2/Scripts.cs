@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -37,24 +38,38 @@ namespace IronMan_mobile2
             //show running window after Run click
             run.Click += delegate
             {
-                RunScriptConnection.StartConnectionAsync(MainActivity.IP);
-                //create the FragmentTransaction
-                Fragment running = new Running();
-                FragmentTransaction ft = FragmentManager.BeginTransaction();
-                ft.Replace(Resource.Id.container, running);
-                ft.AddToBackStack(null);
-                ft.Commit();
+                if (String.IsNullOrEmpty(MainActivity.choosenScripts))
+                {
+                    Toast.MakeText(Context, "Please, choose script", ToastLength.Short).Show();
+                }
+                else
+                {
+                    RunScriptConnection.StartConnectionAsync(MainActivity.IP);
+                    //create the FragmentTransaction
+                    Fragment running = new Running();
+                    FragmentTransaction ft = FragmentManager.BeginTransaction();
+                    ft.Replace(Resource.Id.container, running);
+                    ft.AddToBackStack(null);
+                    ft.Commit();
 
-                //hide TabLayout when running window is showed
-                MainActivity.HideTabBar(0);
+                    //hide TabLayout when running window is showed
+                    MainActivity.HideTabBar(0);
+                }
             };
             return view;
         }
         
         //animated showing Run Bar
-        public static void ShowRunBar()
+        public static void ShowRunBar(int i)
         {
-            runBar.Animate().TranslationY(0);
+            if (i == 0)
+            {
+                runBar.Animate().TranslationY(200);
+            }
+            else if (i == 1)
+            {
+                runBar.Animate().TranslationY(0);
+            }
         }
     }
 }

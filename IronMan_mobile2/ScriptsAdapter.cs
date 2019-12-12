@@ -72,13 +72,13 @@ namespace IronMan_mobile2
                 void BtnPlusOnClick(object sender, EventArgs args)
                 {
                     i += 1;
-                    Scripts.ShowRunBar();
                     if (i % 2 == 1)
                     {
+                        Scripts.ShowRunBar(1);
                         vh.btnPlus.SetImageResource(Resource.Drawable.chech_mark); //change "+" to check mark
                         MainActivity.choosenScripts += list[position] + "*";
                     }
-                    else
+                    else 
                     {
                         vh.btnPlus.SetImageResource(Resource.Drawable.plus_btn); //change check mark to "+"
                         MainActivity.choosenScripts = MainActivity.choosenScripts.Replace(list[position] + "*", "");
