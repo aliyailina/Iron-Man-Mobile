@@ -37,6 +37,7 @@ namespace IronMan_mobile2
             //show running window after Run click
             run.Click += delegate
             {
+                RunScriptConnection.StartConnectionAsync(MainActivity.IP);
                 //create the FragmentTransaction
                 Fragment running = new Running();
                 FragmentTransaction ft = FragmentManager.BeginTransaction();

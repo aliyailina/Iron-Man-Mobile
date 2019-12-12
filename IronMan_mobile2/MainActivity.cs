@@ -17,6 +17,8 @@ namespace IronMan_mobile2
         private static TabLayout tabLayout;
         private ViewPager viewPager;
         public static List<string> scriptList = new List<string>();
+        public static string choosenScripts = null;
+        public static string IP = null;
         
         protected override void AttachBaseContext(Context context)
         {

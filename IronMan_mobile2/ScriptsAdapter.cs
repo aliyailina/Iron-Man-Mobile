@@ -54,6 +54,7 @@ namespace IronMan_mobile2
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
+                int i = 0;
                 ScriptsViewHolder vh = holder as ScriptsViewHolder;
                 
                 vh.scriptName.Text = list[position];
@@ -70,8 +71,18 @@ namespace IronMan_mobile2
                 //when click on "+" button in script item
                 void BtnPlusOnClick(object sender, EventArgs args)
                 {
+                    i += 1;
                     Scripts.ShowRunBar();
-                    vh.btnPlus.SetImageResource(Resource.Drawable.chech_mark); //change "+" to check mark
+                    if (i % 2 == 1)
+                    {
+                        vh.btnPlus.SetImageResource(Resource.Drawable.chech_mark); //change "+" to check mark
+                        MainActivity.choosenScripts += list[position] + "*";
+                    }
+                    else
+                    {
+                        vh.btnPlus.SetImageResource(Resource.Drawable.plus_btn); //change check mark to "+"
+                        MainActivity.choosenScripts = MainActivity.choosenScripts.Replace(list[position] + "*", "");
+                    }
                 }
                 
                 //when click on item

@@ -56,6 +56,7 @@ namespace IronMan_mobile2
             //connect to computer
             connectButton.Click += delegate
             {
+                MainActivity.IP = etIPaddress.Text;
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
                 while (true)
                 {
