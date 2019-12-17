@@ -17,15 +17,13 @@ namespace IronMan_mobile2
         private static RecyclerView lst;
         private RecyclerView.LayoutManager lstLayoutManager;
         private ScriptsAdapter adapter;
-        private Button run;
-        private static int runBarHeight;
+        private static Button run;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
             lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
             runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
             run = view.FindViewById<Button>(Resource.Id.startseq);
-            runBarHeight = runBar.LayoutParameters.Height;
             
 
             //hide run bar
@@ -37,9 +35,6 @@ namespace IronMan_mobile2
             //set the layout manager for list
             lstLayoutManager = new LinearLayoutManager(Context);
             lst.SetLayoutManager(lstLayoutManager);
-
-            runBar.LayoutParameters.Height = 0;
-            runBar.Visibility = ViewStates.Gone;
 
             //show running window after Run click
             run.Click += delegate
@@ -71,16 +66,24 @@ namespace IronMan_mobile2
         {
             if (i == 0)
             {
+                Animation animClick = new ResizeListAnimation(lst, lst.LayoutParameters.Height - runBar.LayoutParameters.Height,
+                    lst.LayoutParameters.Height);
+                animClick.Interpolator = new AccelerateInterpolator();
+                animClick.Duration = 300;
+                lst.Animation = animClick;
+                lst.StartAnimation(animClick);
+                
+                runBar.Visibility = ViewStates.Gone;
                 runBar.Animate().TranslationY(250);
             }
             else if (i == 1)
             {
-                //TODO: Create right resizing
                 runBar.Visibility = ViewStates.Visible;
                 runBar.Animate().TranslationY(0);
                 
-                Animation animClick = new ResizeListAnimation(lst, lst.LayoutParameters.Height, lst.LayoutParameters.Height - runBar.LayoutParameters.Height);
-                runBar.LayoutParameters.Height = runBarHeight;
+                
+                Animation animClick = new ResizeListAnimation(lst, lst.LayoutParameters.Height,
+                    lst.LayoutParameters.Height - runBar.LayoutParameters.Height);
                 animClick.Interpolator = new AccelerateInterpolator();
                 animClick.Duration = 300;
                 lst.Animation = animClick;
