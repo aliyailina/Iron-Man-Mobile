@@ -16,7 +16,7 @@ namespace IronMan_mobile2
         private TabAdapter adapter;
         private static TabLayout tabLayout;
         private ViewPager viewPager;
-        public static List<string> scriptList = new List<string>();
+        public static List<string> scriptList = new List<string>() {"script1", "script2", "script1", "script2", "script1", "script2", "script1", "script2", "script1", "script2","script1", "script2", "script1", "script2"};
         public static string choosenScripts = null;
         public static string IP = null;
         
