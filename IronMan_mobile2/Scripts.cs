@@ -11,13 +11,15 @@ using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace IronMan_mobile2
 {
-    public class Scripts : Fragment
+    public sealed class Scripts : Fragment
     {
         private static RelativeLayout runBar;
         private static RecyclerView lst;
         private RecyclerView.LayoutManager lstLayoutManager;
         private ScriptsAdapter adapter;
         private static Button run;
+        private static int lstMaxHeight;
+        private static int lstMinHeight;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
@@ -36,17 +38,17 @@ namespace IronMan_mobile2
             lstLayoutManager = new LinearLayoutManager(Context);
             lst.SetLayoutManager(lstLayoutManager);
 
+            lstMaxHeight = lst.LayoutParameters.Height;
+            lstMinHeight = lst.LayoutParameters.Height - runBar.LayoutParameters.Height;
             //show running window after Run click
             run.Click += delegate
             {
-
-                if (String.IsNullOrEmpty(MainActivity.choosenScripts))
+                if (String.IsNullOrEmpty(MainActivity.SelectedScripts))
                 {
                     Toast.MakeText(Context, "Please, choose script", ToastLength.Short).Show();
                 }
                 else
                 {
-                    RunScriptConnection.StartConnectionAsync(MainActivity.IP);
                     //create the FragmentTransaction
                     Fragment running = new Running();
                     FragmentTransaction ft = FragmentManager.BeginTransaction();
@@ -66,13 +68,17 @@ namespace IronMan_mobile2
         {
             if (i == 0)
             {
-                Animation animClick = new ResizeListAnimation(lst, lst.LayoutParameters.Height - runBar.LayoutParameters.Height,
-                    lst.LayoutParameters.Height);
-                animClick.Interpolator = new AccelerateInterpolator();
-                animClick.Duration = 300;
-                lst.Animation = animClick;
-                lst.StartAnimation(animClick);
-                
+                if (lst.LayoutParameters.Height == lstMinHeight)
+                {
+                    Animation animClick = new ResizeListAnimation(lst,
+                        lstMinHeight,
+                        lstMaxHeight);
+                    animClick.Interpolator = new AccelerateInterpolator();
+                    animClick.Duration = 300;
+                    lst.Animation = animClick;
+                    lst.StartAnimation(animClick);
+                }
+
                 runBar.Visibility = ViewStates.Gone;
                 runBar.Animate().TranslationY(250);
             }
@@ -80,14 +86,16 @@ namespace IronMan_mobile2
             {
                 runBar.Visibility = ViewStates.Visible;
                 runBar.Animate().TranslationY(0);
-                
-                
-                Animation animClick = new ResizeListAnimation(lst, lst.LayoutParameters.Height,
-                    lst.LayoutParameters.Height - runBar.LayoutParameters.Height);
-                animClick.Interpolator = new AccelerateInterpolator();
-                animClick.Duration = 300;
-                lst.Animation = animClick;
-                lst.StartAnimation(animClick);
+
+                if (lst.LayoutParameters.Height == lstMaxHeight)
+                {
+                    Animation animClick = new ResizeListAnimation(lst, lstMaxHeight,
+                        lstMinHeight);
+                    animClick.Interpolator = new AccelerateInterpolator();
+                    animClick.Duration = 300;
+                    lst.Animation = animClick;
+                    lst.StartAnimation(animClick);
+                }
             }
         }
     }

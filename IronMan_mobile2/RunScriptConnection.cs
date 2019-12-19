@@ -2,12 +2,13 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace IronMan_mobile2
 {
     public class RunScriptConnection
     {
-        private static void StartConnection(string IP)
+        public static void StartConnection(string IP)
         {
             const int port = 30000;
             try
@@ -19,8 +20,16 @@ namespace IronMan_mobile2
                 };
                 socket.Connect(endPoint);
 
-                socket.Send(Encoding.UTF8.GetBytes(MainActivity.choosenScripts));
+                socket.Send(Encoding.UTF8.GetBytes(MainActivity.SelectedScripts));
                 
+                byte[] arr = new byte[1024];
+                string result;
+                int bytes = 0;
+                bytes = socket.Receive(arr);
+                result = Encoding.UTF8.GetString(arr, 0, bytes);
+
+                Running.result = result;
+
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
 

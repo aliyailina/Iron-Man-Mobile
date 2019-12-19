@@ -10,21 +10,21 @@ namespace IronMan_mobile2
 {
     
     //ViewHolder for RecyclerView
-    public class ScriptsViewHolder : RecyclerView.ViewHolder
+    public sealed class ScriptsViewHolder : RecyclerView.ViewHolder
     {
-        public TextView scriptName { get; private set; }
-        public ImageButton btnPlus { get; private set; }
+        public TextView ScriptName { get; }
+        public ImageButton BtnPlus { get; }
  
         public ScriptsViewHolder(View itemView) : base(itemView)
         {
-            scriptName = itemView.FindViewById<TextView>(Resource.Id.textView5);
-            btnPlus = itemView.FindViewById<ImageButton>(Resource.Id.plus_btn);
+            ScriptName = itemView.FindViewById<TextView>(Resource.Id.textView5);
+            BtnPlus = itemView.FindViewById<ImageButton>(Resource.Id.plus_btn);
         }
     }
-    public class ScriptsAdapter : RecyclerView.Adapter
+    public sealed class ScriptsAdapter : RecyclerView.Adapter
     {
-            private List<string> list; //list of scripts
-            private Context context; 
+            private readonly List<string> list; //list of scripts
+            private readonly Context context; 
 
             public ScriptsAdapter(Context context, List<string> list)
             {
@@ -54,37 +54,43 @@ namespace IronMan_mobile2
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                int i = 0;
-                ScriptsViewHolder vh = holder as ScriptsViewHolder;
-                
-                vh.scriptName.Text = list[position];
+                var i = 0;
 
-                //event unsubscriptions to don't repeat the subscription
-                vh.btnPlus.Click -= BtnPlusOnClick;
-                
-                vh.btnPlus.Click += BtnPlusOnClick;
-                
-                vh.ItemView.Click -= ScriptOnClick;
-
-                vh.ItemView.Click += ScriptOnClick;
-                
-                //when click on "+" button in script item
-                void BtnPlusOnClick(object sender, EventArgs args)
+                if (holder is ScriptsViewHolder vh)
                 {
-                    i += 1;
-                    if (i % 2 == 1)
+                    vh.ScriptName.Text = list[position];
+
+                    //event unsubscription to don't repeat the subscription
+                    vh.BtnPlus.Click -= BtnPlusOnClick;
+
+                    vh.BtnPlus.Click += BtnPlusOnClick;
+
+                    vh.ItemView.Click -= ScriptOnClick;
+
+                    vh.ItemView.Click += ScriptOnClick;
+
+                    //when click on "+" button in script item
+                    void BtnPlusOnClick(object sender, EventArgs args)
                     {
-                        Scripts.ShowRunBar(1);
-                        vh.btnPlus.SetImageResource(Resource.Drawable.chech_mark); //change "+" to check mark
-                        MainActivity.choosenScripts += list[position] + "*";
-                    }
-                    else 
-                    {
-                        vh.btnPlus.SetImageResource(Resource.Drawable.plus_btn); //change check mark to "+"
-                        MainActivity.choosenScripts = MainActivity.choosenScripts.Replace(list[position] + "*", "");
+                        i += 1;
+                        if (i % 2 == 1)
+                        {
+                            Scripts.ShowRunBar(1);
+                            
+                            //change "+" to check mark
+                            vh.BtnPlus.SetImageResource(Resource.Drawable.chech_mark);
+                            MainActivity.SelectedScripts += list[position] + "*";
+                        }
+                        else
+                        {
+                            //change check mark to "+"
+                            vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
+                            MainActivity.SelectedScripts =
+                                MainActivity.SelectedScripts.Replace(list[position] + "*", "");
+                        }
                     }
                 }
-                
+
                 //when click on item
                 void ScriptOnClick(object sender, EventArgs e)
                 {

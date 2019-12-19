@@ -2,21 +2,18 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Widget;
 
 namespace IronMan_mobile2
 {
-    public class GetScriptConnection
+    public static class GetScriptConnection
     {
-        private static void StartConnection(string IP)
+        private static void StartConnection(string ip)
         {
             const int port = 13000;
             try
             {
-                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(IP), port);
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ip), port);
                 Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
                 {
                     SendTimeout = 3000, ReceiveTimeout = 3000
@@ -24,10 +21,9 @@ namespace IronMan_mobile2
                 socket.Connect(endPoint);
                 byte[] arr = new byte[20000];
                 string[] files;
-                int bytes = 0;
                 do
                 {
-                    bytes = socket.Receive(arr);
+                    var bytes = socket.Receive(arr);
                     files = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
                 } while (socket.Available > 0);
 
@@ -44,15 +40,15 @@ namespace IronMan_mobile2
                 socket.Close();
 
             }
-            catch (Exception e)
+            catch
             {
                 Editor.ConnectMessage = "Not connected";
             }
         }
         
-        public static async void StartConnectionAsync(string IP)
+        public static async void StartConnectionAsync(string ip)
         {
-            await Task.Run(() => StartConnection(IP));
+            await Task.Run(() => StartConnection(ip));
         }
     }
 }

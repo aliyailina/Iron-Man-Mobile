@@ -42,6 +42,15 @@
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="220dp"/>
+    
+    <ProgressBar
+                 android:id="@+id/oneScriptIndicator"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:visibility="visible"
+                 android:layout_centerInParent="true"
+                 android:indeterminateTintMode="src_in"
+                 android:indeterminateTint="@color/mainColor"/>
 
     <Button
             android:layout_width="143dp"

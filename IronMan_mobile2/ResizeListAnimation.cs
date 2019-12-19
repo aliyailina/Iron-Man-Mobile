@@ -5,9 +5,9 @@ namespace IronMan_mobile2
 {
     public class ResizeListAnimation : Animation
     {
-        private int mFromHeight;
-        private int mToHeight;
-        private View mView;
+        private readonly int mFromHeight;
+        private readonly int mToHeight;
+        private readonly View mView;
 
         public ResizeListAnimation(View view, int fromHeight, int toHeight)
         {
@@ -18,11 +18,9 @@ namespace IronMan_mobile2
 
         protected override void ApplyTransformation(float interpolatedTime, Transformation t)
         {
-            int newHeight;
-            
             if (mView.Height != mToHeight)
             {
-                newHeight = (int) (mFromHeight + (mToHeight - mFromHeight) * interpolatedTime);
+                var newHeight = (int) (mFromHeight + (mToHeight - mFromHeight) * interpolatedTime);
                 mView.LayoutParameters.Height = newHeight;
                 mView.RequestLayout();
             }

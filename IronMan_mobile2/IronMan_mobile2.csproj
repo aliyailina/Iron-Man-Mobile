@@ -173,12 +173,14 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\custom_tab.xml" />
+    <AndroidResource Include="Resources\layout\edit_dialog.xml" />
     <AndroidResource Include="Resources\layout\file_info_dialog.xml" />
     <AndroidResource Include="Resources\layout\file_name_dialog.xml" />
     <AndroidResource Include="Resources\layout\running.xml" />
     <AndroidResource Include="Resources\layout\script.xml" />
     <AndroidResource Include="Resources\layout\scripteditor.xml" />
     <AndroidResource Include="Resources\layout\scriptviewer.xml" />
+    <AndroidResource Include="Resources\Resource.Designer.cs" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />

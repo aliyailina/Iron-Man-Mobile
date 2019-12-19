@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Speech;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -15,7 +17,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 namespace IronMan_mobile2
 {
-    public class Editor : Fragment
+    public sealed class Editor : Fragment
     {
         private bool isRecording;
         private readonly int VOICE = 10;
@@ -29,7 +31,7 @@ namespace IronMan_mobile2
         public static string ConnectMessage { get; set; } = null;
 
        // public static string[] filmData;
-        public static List<string> scriptsList = MainActivity.scriptList;
+        public static List<string> scriptsList = MainActivity.ScriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scripteditor, container, false);
@@ -56,7 +58,7 @@ namespace IronMan_mobile2
             //connect to computer
             connectButton.Click += delegate
             {
-                MainActivity.IP = etIPaddress.Text;
+                MainActivity.Ip = etIPaddress.Text;
                 GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
                 while (true)
                 {
@@ -86,15 +88,24 @@ namespace IronMan_mobile2
             //enable editing
             editButton.Click += delegate
             {
-                textBox.RequestFocus();
-                if (textBox.IsFocused)
-                {
-                    textBox.Enabled = true;
-                    InputMethodManager imm =
+                LayoutInflater layoutInflater = LayoutInflater.From(Context);
+                View editView = layoutInflater.Inflate(Resource.Layout.edit_dialog, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Context, Resource.Style.AlertDialogTheme);
+                EditText input = editView.FindViewById<EditText>(Resource.Id.edit_field);
+                input.SetBackgroundColor(Color.Transparent);
+                input.Text = textBox.Text;
+                builder.SetView(editView);
+
+                builder.SetCancelable(false)
+                    .SetPositiveButton("EDIT", delegate { textBox.Text = input.Text; });
+                var dialog = builder.Create();
+                dialog.Show();
+                dialog.GetButton((int)DialogButtonType.Positive).SetTextColor(Resources.GetColor(Resource.Color.mainColor));
+
+                dialog.Window.SetBackgroundDrawableResource(Resource.Drawable.ip_background);
+                InputMethodManager imm =
                         Activity.GetSystemService(Context.InputMethodService) as InputMethodManager;  
                     imm?.ShowSoftInput(textBox, ShowFlags.Forced);
-                }
-                else textBox.Enabled = false;
             };
             
 

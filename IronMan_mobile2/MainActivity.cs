@@ -11,15 +11,16 @@ using Calligraphy;
 namespace IronMan_mobile2
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", Icon = "@drawable/logo")]
-    public class MainActivity : AppCompatActivity
+    public sealed class MainActivity : AppCompatActivity
     {
         private TabAdapter adapter;
-        private static TabLayout tabLayout;
+        private static TabLayout _tabLayout;
         private ViewPager viewPager;
-        public static List<string> scriptList = new List<string>() {"script1", "script2", "script1", "script2", "script1", "script2", "script1", "script2", "script1", "script2","script1", "script2", "script1", "script2"};
-        public static string choosenScripts = null;
-        public static string IP = null;
+        public static readonly List<string> ScriptList = new List<string>();
+        public static string SelectedScripts = null;
+        public static string Ip = null;
         
+        //add fonts support
         protected override void AttachBaseContext(Context context)
         {
             base.AttachBaseContext(CalligraphyContextWrapper.Wrap(context));
@@ -27,40 +28,51 @@ namespace IronMan_mobile2
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             base.OnCreate(savedInstanceState);
+            
+            //hide Status Bar
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
+            
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
             viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
-            tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
-            tabLayout.SetBackgroundResource(Resource.Drawable.tab_background);
+            
+            _tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
+            _tabLayout.SetBackgroundResource(Resource.Drawable.tab_background);
 
             adapter = new TabAdapter(SupportFragmentManager, this);
             adapter.AddFragment(new Editor(), "EDITOR");
             adapter.AddFragment(new Scripts(), "SCRIPTS");
             viewPager.Adapter = adapter;
-            tabLayout.SetupWithViewPager(viewPager);
-            HightLightCurrentTab(0); 
-            viewPager.PageSelected += (sender, e) => HightLightCurrentTab(e.Position);
+            _tabLayout.SetupWithViewPager(viewPager);
+            
+            HighLightCurrentTab(0); 
+            viewPager.PageSelected += (sender, e) => HighLightCurrentTab(e.Position);
             viewPager.PageScrollStateChanged += (sender, e) => { };
         }
 
         public static void HideTabBar(int id)
         {
-            if(id == 0)
-                tabLayout.Visibility = ViewStates.Gone;
-            else if (id == 1)
-                tabLayout.Visibility = ViewStates.Visible;
+            switch (id)
+            {
+                case 0:
+                    _tabLayout.Visibility = ViewStates.Gone;
+                    break;
+                case 1:
+                    _tabLayout.Visibility = ViewStates.Visible;
+                    break;
+            }
         }
 
-        private void HightLightCurrentTab(int position)
+        private void HighLightCurrentTab(int position)
         {
             TabLayout.Tab tab;
-            for (int i = 0; i < tabLayout.TabCount; i++)
+            for (var i = 0; i < _tabLayout.TabCount; i++)
             {
-                tab = tabLayout.GetTabAt(i);
+                tab = _tabLayout.GetTabAt(i);
                 if (tab != null)
                 {
                     tab.SetCustomView(null);
@@ -68,7 +80,7 @@ namespace IronMan_mobile2
                 }
             }
             
-            tab = tabLayout.GetTabAt(position);
+            tab = _tabLayout.GetTabAt(position);
             if (tab != null)
             {
                 tab.SetCustomView(null);
