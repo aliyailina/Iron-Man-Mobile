@@ -16,8 +16,7 @@ namespace IronMan_mobile2
         private TabAdapter adapter;
         private static TabLayout _tabLayout;
         private ViewPager viewPager;
-        public static readonly List<string> ScriptList = new List<string>();
-        public static string SelectedScripts = null;
+        
         public static string Ip = null;
         
         //add fonts support
@@ -54,17 +53,14 @@ namespace IronMan_mobile2
             viewPager.PageScrollStateChanged += (sender, e) => { };
         }
 
-        public static void HideTabBar(int id)
+        public static void SetTabBarVisibility(VisibilityFlags flag)
         {
-            switch (id)
+            _tabLayout.Visibility = flag switch
             {
-                case 0:
-                    _tabLayout.Visibility = ViewStates.Gone;
-                    break;
-                case 1:
-                    _tabLayout.Visibility = ViewStates.Visible;
-                    break;
-            }
+                VisibilityFlags.Invisible => ViewStates.Gone,
+                VisibilityFlags.Visible => ViewStates.Visible,
+                _ => _tabLayout.Visibility
+            };
         }
 
         private void HighLightCurrentTab(int position)

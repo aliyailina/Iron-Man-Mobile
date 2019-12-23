@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Speech;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 using Java.Lang;
-using Java.Util;
 using Fragment = Android.Support.V4.App.Fragment;
 
 
@@ -31,7 +28,6 @@ namespace IronMan_mobile2
         public static string ConnectMessage { get; set; } = null;
 
        // public static string[] filmData;
-        public static List<string> scriptsList = MainActivity.ScriptList;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scripteditor, container, false);
@@ -153,7 +149,7 @@ namespace IronMan_mobile2
                         // if you wish it to recognise the default Locale language and German
                         // if you do use another locale, regional dialects may not be recognised very well
 
-                        voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
+                        voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.SimplifiedChinese);
                         StartActivityForResult(voiceIntent, VOICE);
                     }
                     isRecording = !isRecording;

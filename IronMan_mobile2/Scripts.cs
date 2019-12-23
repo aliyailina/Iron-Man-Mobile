@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -20,6 +21,11 @@ namespace IronMan_mobile2
         private static Button run;
         private static int lstMaxHeight;
         private static int lstMinHeight;
+        public static int scriptCompletedCounter;
+        
+        public static readonly List<string> ScriptList = new List<string>();
+        
+        public static string SelectedScripts = null;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
@@ -29,9 +35,9 @@ namespace IronMan_mobile2
             
 
             //hide run bar
-            ShowRunBar(0);
+            SetRunBarVisibility(VisibilityFlags.Invisible);
             
-            adapter = new ScriptsAdapter(Context, Editor.scriptsList);
+            adapter = new ScriptsAdapter(Context, ScriptList);
             lst.SetAdapter(adapter);
             
             //set the layout manager for list
@@ -43,60 +49,63 @@ namespace IronMan_mobile2
             //show running window after Run click
             run.Click += delegate
             {
-                if (String.IsNullOrEmpty(MainActivity.SelectedScripts))
+                if (String.IsNullOrEmpty(SelectedScripts))
                 {
                     Toast.MakeText(Context, "Please, choose script", ToastLength.Short).Show();
                 }
                 else
                 {
-                    //create the FragmentTransaction
+                    scriptCompletedCounter = 0;
+                    RunScriptConnection.StartConnectionAsync(MainActivity.Ip);
+                    
+                    //replace Scripts with Running
                     Fragment running = new Running();
-                    FragmentTransaction ft = FragmentManager.BeginTransaction();
-                    ft.Replace(Resource.Id.container, running);
-                    ft.AddToBackStack(null);
-                    ft.Commit();
+                    FragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.container, running)
+                        .AddToBackStack(null)
+                        .Commit();
 
                     //hide TabLayout when running window is showed
-                    MainActivity.HideTabBar(0);
+                    MainActivity.SetTabBarVisibility(VisibilityFlags.Invisible);
                 }
             };
             return view;
         }
+
         
-        //animated showing Run Bar
-        public static void ShowRunBar(int i)
+        public static void AddToScriptList(string script)
         {
-            if (i == 0)
+            if (!ScriptList.Contains(script) && !string.IsNullOrEmpty(script))
             {
-                if (lst.LayoutParameters.Height == lstMinHeight)
-                {
-                    Animation animClick = new ResizeListAnimation(lst,
-                        lstMinHeight,
-                        lstMaxHeight);
-                    animClick.Interpolator = new AccelerateInterpolator();
-                    animClick.Duration = 300;
-                    lst.Animation = animClick;
-                    lst.StartAnimation(animClick);
-                }
-
-                runBar.Visibility = ViewStates.Gone;
-                runBar.Animate().TranslationY(250);
+                ScriptList.Add(script);
             }
-            else if (i == 1)
+        }
+        
+
+        //animated showing Run Bar
+        public static void SetRunBarVisibility(VisibilityFlags flag)
+        {
+            switch (flag)
             {
-                runBar.Visibility = ViewStates.Visible;
-                runBar.Animate().TranslationY(0);
-
-                if (lst.LayoutParameters.Height == lstMaxHeight)
-                {
-                    Animation animClick = new ResizeListAnimation(lst, lstMaxHeight,
-                        lstMinHeight);
-                    animClick.Interpolator = new AccelerateInterpolator();
-                    animClick.Duration = 300;
-                    lst.Animation = animClick;
-                    lst.StartAnimation(animClick);
-                }
+                case VisibilityFlags.Invisible:
+                    runBar.Animate().TranslationY(250);
+                    AnimatedListResizing(lstMinHeight, lstMaxHeight);
+                    break;
+                case VisibilityFlags.Visible:
+                    runBar.Animate().TranslationY(0);
+                    AnimatedListResizing(lstMaxHeight, lstMinHeight);
+                    break;
             }
+        }
+        
+        private static void AnimatedListResizing(int fromHeight, int toHeight)
+        {
+            if (lst.LayoutParameters.Height != fromHeight) return;
+            Animation animClick = new ResizeListAnimation(lst, fromHeight, toHeight);
+            animClick.Interpolator = new AccelerateInterpolator();
+            animClick.Duration = 300;
+            lst.Animation = animClick;
+            lst.StartAnimation(animClick);
         }
     }
 }

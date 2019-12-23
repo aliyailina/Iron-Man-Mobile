@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Net.Mime;
-using System.Threading;
-using Android.App;
+using Android.Arch.Lifecycle;
 using Android.Content;
-using Android.Graphics;
-using Android.Media;
+using Android.Database;
 using Android.OS;
-using Android.Transitions;
 using Android.Views;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
@@ -17,39 +13,55 @@ namespace IronMan_mobile2
     {
         private bool backIsClicked;
         public bool scriptIsRunning = true;
-        private TextView pleasewait;
+        private static TextView pleasewait;
         private Button back;
         private static ProgressBar oneScriptIndicator;
-        public static string result = null;
+        private static string result;
         private static Context context;
+        private static TextView runningText;
+
+        public static string Result
+        {
+            set
+            {
+                Scripts.scriptCompletedCounter++;
+                var locker = new object();
+                lock (locker)
+                {
+                    if (value != null)
+                    {
+                        result = value;
+                        Toast.MakeText(context, result, ToastLength.Short).Show();
+                        if (Scripts.scriptCompletedCounter == ScriptsAdapter.scriptSelectedCounter)
+                        {
+                            oneScriptIndicator.Visibility = ViewStates.Gone;
+                            pleasewait.Visibility = ViewStates.Gone;
+                            runningText.Text = "DONE";
+                            Toast.MakeText(context, "It's all", ToastLength.Short).Show();
+                        }
+                    }
+                }
+            }
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.running, container, false);
             pleasewait = view.FindViewById<TextView>(Resource.Id.pleasewait);
             back = view.FindViewById<Button>(Resource.Id.back);
             oneScriptIndicator = view.FindViewById<ProgressBar>(Resource.Id.oneScriptIndicator);
+            runningText = view.FindViewById<TextView>(Resource.Id.runningText);
             context = Context;
-            
-            //TODO: right fragment working
-            
-            RunScriptConnection.StartConnection(MainActivity.Ip);
-            
+
             //when "BACK" is clicked
             back.Click += delegate
             {
                 FragmentManager.PopBackStackImmediate(); //replace the fragment with previous (Scripts)
-                MainActivity.HideTabBar(1); //show tab bar
+                MainActivity.SetTabBarVisibility(VisibilityFlags.Visible); //show tab bar
             };
             
             return view;
         }
-
-        public static void ScriptFinishedResult()
-        {
-            oneScriptIndicator.Visibility = ViewStates.Gone;
-            Toast.MakeText(context,
-                result == "Successful" ? "Script completed successfully!" : "Script completed with error!",
-                ToastLength.Short).Show();
-        }
     }
+    
 }

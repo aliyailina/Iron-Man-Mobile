@@ -19,20 +19,17 @@ namespace IronMan_mobile2
                     SendTimeout = 3000, ReceiveTimeout = 3000
                 };
                 socket.Connect(endPoint);
-                byte[] arr = new byte[20000];
-                string[] files;
+                byte[] arr = new byte[1024];
+                string[] scripts;
                 do
                 {
                     var bytes = socket.Receive(arr);
-                    files = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
+                    scripts = Encoding.UTF8.GetString(arr, 0, bytes).Split('*');
                 } while (socket.Available > 0);
 
-                foreach (var file in files)
+                foreach (var script in scripts)
                 {
-                    if (!Editor.scriptsList.Contains(file) && !String.IsNullOrEmpty(file))
-                    {
-                        Editor.scriptsList.Add(file);
-                    }
+                    Scripts.AddToScriptList(script);
                 }
 
                 Editor.ConnectMessage = "Connected";

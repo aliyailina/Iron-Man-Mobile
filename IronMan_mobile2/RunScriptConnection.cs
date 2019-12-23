@@ -1,14 +1,18 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using Android.Widget;
+
 namespace IronMan_mobile2
 {
     public class RunScriptConnection
     {
-        public static void StartConnection(string IP)
+        static string result = null;
+        public static string StartConnection(string IP)
         {
             const int port = 30000;
             try
@@ -20,29 +24,35 @@ namespace IronMan_mobile2
                 };
                 socket.Connect(endPoint);
 
-                socket.Send(Encoding.UTF8.GetBytes(MainActivity.SelectedScripts));
+                socket.Send(Encoding.UTF8.GetBytes(Scripts.SelectedScripts));
                 
                 byte[] arr = new byte[1024];
-                string result;
                 int bytes = 0;
-                bytes = socket.Receive(arr);
-                result = Encoding.UTF8.GetString(arr, 0, bytes);
-
-                Running.result = result;
+                do
+                {
+                    bytes = socket.Receive(arr);
+                    result = Encoding.UTF8.GetString(arr, 0, bytes);
+                } while (socket.Available > 0);
+                
+                
+                //Running.Result = result;
 
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
+                
 
             }
             catch (Exception e)
             {
                 
             }
+            
+            return result;
         }
         
         public static async void StartConnectionAsync(string IP)
         {
-            await Task.Run(() => StartConnection(IP));
+            Running.Result = await Task.Run(() => StartConnection(IP));
         }
     }
 }

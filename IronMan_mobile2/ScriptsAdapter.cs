@@ -23,11 +23,13 @@ namespace IronMan_mobile2
     }
     public sealed class ScriptsAdapter : RecyclerView.Adapter
     {
+            public static int scriptSelectedCounter;
             private readonly List<string> list; //list of scripts
             private readonly Context context; 
 
             public ScriptsAdapter(Context context, List<string> list)
             {
+                scriptSelectedCounter = 0;
                 this.list = list;
                 this.context = context;
             }
@@ -54,7 +56,7 @@ namespace IronMan_mobile2
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                var i = 0;
+                //var i = 0;
 
                 if (holder is ScriptsViewHolder vh)
                 {
@@ -72,21 +74,22 @@ namespace IronMan_mobile2
                     //when click on "+" button in script item
                     void BtnPlusOnClick(object sender, EventArgs args)
                     {
-                        i += 1;
-                        if (i % 2 == 1)
+                        scriptSelectedCounter++;
+                        if (scriptSelectedCounter % 2 == 1)
                         {
-                            Scripts.ShowRunBar(1);
+                            Scripts.SetRunBarVisibility(VisibilityFlags.Visible);
                             
                             //change "+" to check mark
                             vh.BtnPlus.SetImageResource(Resource.Drawable.chech_mark);
-                            MainActivity.SelectedScripts += list[position] + "*";
+                            Scripts.SelectedScripts += list[position] + "*";
                         }
                         else
                         {
+                            Scripts.SetRunBarVisibility(VisibilityFlags.Invisible);
                             //change check mark to "+"
                             vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
-                            MainActivity.SelectedScripts =
-                                MainActivity.SelectedScripts.Replace(list[position] + "*", "");
+                            Scripts.SelectedScripts =
+                                Scripts.SelectedScripts.Replace(list[position] + "*", "");
                         }
                     }
                 }

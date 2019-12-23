@@ -27,6 +27,7 @@
               android:layout_width="wrap_content" 
               android:layout_height="wrap_content"
               android:text="RUNNING"
+              android:id="@+id/runningText"
               android:textSize="37sp"
               fontPath="fonts/squares_bold.ttf"
               android:layout_alignParentTop="true"
