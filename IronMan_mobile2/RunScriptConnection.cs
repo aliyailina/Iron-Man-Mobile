@@ -11,8 +11,8 @@ namespace IronMan_mobile2
 {
     public class RunScriptConnection
     {
-        static string result = null;
-        public static string StartConnection(string IP)
+        static string result;
+        public static string StartConnection(string IP, string script)
         {
             const int port = 30000;
             try
@@ -24,7 +24,8 @@ namespace IronMan_mobile2
                 };
                 socket.Connect(endPoint);
 
-                socket.Send(Encoding.UTF8.GetBytes(Scripts.SelectedScripts));
+                //socket.Send(Encoding.UTF8.GetBytes(Scripts.SelectedScripts));
+                socket.Send(Encoding.UTF8.GetBytes(script));
                 
                 byte[] arr = new byte[1024];
                 int bytes = 0;
@@ -35,7 +36,6 @@ namespace IronMan_mobile2
                 } while (socket.Available > 0);
                 
                 
-                //Running.Result = result;
 
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
@@ -46,13 +46,16 @@ namespace IronMan_mobile2
             {
                 
             }
-            
+
             return result;
         }
         
         public static async void StartConnectionAsync(string IP)
-        {
-            Running.Result = await Task.Run(() => StartConnection(IP));
+        { 
+            foreach (var script in Scripts.SelectedScripts)
+            {
+                Running.Result = await Task.Run(() => StartConnection(IP, script));
+            }
         }
     }
 }

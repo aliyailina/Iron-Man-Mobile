@@ -19,11 +19,14 @@ namespace IronMan_mobile2
         private static string result;
         private static Context context;
         private static TextView runningText;
+        private static TextView howManyScriptsText;
 
         public static string Result
         {
+            get => result;
             set
             {
+                result = null;
                 Scripts.scriptCompletedCounter++;
                 var locker = new object();
                 lock (locker)
@@ -32,6 +35,7 @@ namespace IronMan_mobile2
                     {
                         result = value;
                         Toast.MakeText(context, result, ToastLength.Short).Show();
+                        howManyScriptsText.Text = $"{Scripts.scriptCompletedCounter}/{ScriptsAdapter.scriptSelectedCounter}";
                         if (Scripts.scriptCompletedCounter == ScriptsAdapter.scriptSelectedCounter)
                         {
                             oneScriptIndicator.Visibility = ViewStates.Gone;
@@ -51,7 +55,11 @@ namespace IronMan_mobile2
             back = view.FindViewById<Button>(Resource.Id.back);
             oneScriptIndicator = view.FindViewById<ProgressBar>(Resource.Id.oneScriptIndicator);
             runningText = view.FindViewById<TextView>(Resource.Id.runningText);
+            howManyScriptsText = view.FindViewById<TextView>(Resource.Id.howManyScriptsText);
             context = Context;
+
+            howManyScriptsText.Text = $"0/{ScriptsAdapter.scriptSelectedCounter}";
+            
 
             //when "BACK" is clicked
             back.Click += delegate

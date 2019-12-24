@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -25,7 +26,7 @@ namespace IronMan_mobile2
         
         public static readonly List<string> ScriptList = new List<string>();
         
-        public static string SelectedScripts = null;
+        public static List<string> SelectedScripts = new List<string>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
@@ -49,7 +50,7 @@ namespace IronMan_mobile2
             //show running window after Run click
             run.Click += delegate
             {
-                if (String.IsNullOrEmpty(SelectedScripts))
+                if (!SelectedScripts.Any())
                 {
                     Toast.MakeText(Context, "Please, choose script", ToastLength.Short).Show();
                 }

@@ -14,6 +14,7 @@ namespace IronMan_mobile2
     {
         public TextView ScriptName { get; }
         public ImageButton BtnPlus { get; }
+        public int btnCounter = 0;
  
         public ScriptsViewHolder(View itemView) : base(itemView)
         {
@@ -56,7 +57,6 @@ namespace IronMan_mobile2
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                //var i = 0;
 
                 if (holder is ScriptsViewHolder vh)
                 {
@@ -74,23 +74,31 @@ namespace IronMan_mobile2
                     //when click on "+" button in script item
                     void BtnPlusOnClick(object sender, EventArgs args)
                     {
-                        scriptSelectedCounter++;
-                        if (scriptSelectedCounter % 2 == 1)
+                        if (vh.btnCounter % 2 == 0)
                         {
+                            scriptSelectedCounter++;
+                            vh.btnCounter++;
                             Scripts.SetRunBarVisibility(VisibilityFlags.Visible);
                             
                             //change "+" to check mark
                             vh.BtnPlus.SetImageResource(Resource.Drawable.chech_mark);
-                            Scripts.SelectedScripts += list[position] + "*";
+                            //Scripts.SelectedScripts += list[position] + "*";
+                            
+                            Scripts.SelectedScripts.Add(list[position]);
                         }
                         else
                         {
-                            Scripts.SetRunBarVisibility(VisibilityFlags.Invisible);
+                            vh.btnCounter--;
+                            scriptSelectedCounter--;
                             //change check mark to "+"
                             vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
-                            Scripts.SelectedScripts =
-                                Scripts.SelectedScripts.Replace(list[position] + "*", "");
-                        }
+                           /* Scripts.SelectedScripts =
+                                Scripts.SelectedScripts.Replace(list[position] + "*", "");*/
+
+                           Scripts.SelectedScripts.Remove(list[position]);
+                        } 
+                        
+                        if(scriptSelectedCounter == 0) Scripts.SetRunBarVisibility(VisibilityFlags.Invisible);
                     }
                 }
 
