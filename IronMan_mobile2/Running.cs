@@ -27,7 +27,7 @@ namespace IronMan_mobile2
             set
             {
                 result = null;
-                Scripts.scriptCompletedCounter++;
+                Scripts.ScriptCompletedCounter++;
                 var locker = new object();
                 lock (locker)
                 {
@@ -35,8 +35,8 @@ namespace IronMan_mobile2
                     {
                         result = value;
                         Toast.MakeText(context, result, ToastLength.Short).Show();
-                        howManyScriptsText.Text = $"{Scripts.scriptCompletedCounter}/{ScriptsAdapter.scriptSelectedCounter}";
-                        if (Scripts.scriptCompletedCounter == ScriptsAdapter.scriptSelectedCounter)
+                        howManyScriptsText.Text = $"{Scripts.ScriptCompletedCounter}/{ScriptsAdapter.ScriptSelectedCounter}";
+                        if (Scripts.ScriptCompletedCounter == ScriptsAdapter.ScriptSelectedCounter)
                         {
                             oneScriptIndicator.Visibility = ViewStates.Gone;
                             pleasewait.Visibility = ViewStates.Gone;
@@ -58,7 +58,7 @@ namespace IronMan_mobile2
             howManyScriptsText = view.FindViewById<TextView>(Resource.Id.howManyScriptsText);
             context = Context;
 
-            howManyScriptsText.Text = $"0/{ScriptsAdapter.scriptSelectedCounter}";
+            howManyScriptsText.Text = $"0/{ScriptsAdapter.ScriptSelectedCounter}";
             
 
             //when "BACK" is clicked

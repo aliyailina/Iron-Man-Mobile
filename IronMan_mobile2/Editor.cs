@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Speech;
+using Android.Support.V4.Content;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -20,14 +21,11 @@ namespace IronMan_mobile2
         private readonly int VOICE = 10;
         private EditText textBox;
         private Button recButton;
-        private EditText etIPaddress;
-        private string serIpAddress;
+        private EditText editIPaddress;
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
-        public static string ConnectMessage { get; set; } = null;
-
-       // public static string[] filmData;
+        public static string ConnectMessage { get; set; }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scripteditor, container, false);
@@ -44,9 +42,7 @@ namespace IronMan_mobile2
             textBox.SetHorizontallyScrolling(false);
 
             saveScript = view.FindViewById<Button>(Resource.Id.save_script);
-
-            //find IP field
-            etIPaddress = view.FindViewById<EditText>(Resource.Id.edIPaddress);
+            editIPaddress = view.FindViewById<EditText>(Resource.Id.edIPaddress);
             recButton = view.FindViewById<Button>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
@@ -54,8 +50,8 @@ namespace IronMan_mobile2
             //connect to computer
             connectButton.Click += delegate
             {
-                MainActivity.Ip = etIPaddress.Text;
-                GetScriptConnection.StartConnectionAsync(etIPaddress.Text);
+                MainActivity.Ip = editIPaddress.Text;
+                GetScriptConnection.StartConnectionAsync(editIPaddress.Text);
                 while (true)
                 {
                     if (ConnectMessage != null)
@@ -96,7 +92,7 @@ namespace IronMan_mobile2
                     .SetPositiveButton("EDIT", delegate { textBox.Text = input.Text; });
                 var dialog = builder.Create();
                 dialog.Show();
-                dialog.GetButton((int)DialogButtonType.Positive).SetTextColor(Resources.GetColor(Resource.Color.mainColor));
+                dialog.GetButton((int)DialogButtonType.Positive).SetTextColor(new Color(ContextCompat.GetColor(Context, Resource.Color.mainColor)));
 
                 dialog.Window.SetBackgroundDrawableResource(Resource.Drawable.ip_background);
                 InputMethodManager imm =
@@ -116,7 +112,6 @@ namespace IronMan_mobile2
                 {
                     textBox.Text = "No microphone present";
                     recButton.Enabled = false;
-                    return;
                 });
 
                 alert.Show();
@@ -179,25 +174,24 @@ namespace IronMan_mobile2
 
                     saveScript.Click += delegate
                     {
-                        serIpAddress = etIPaddress.Text;
-                        if (serIpAddress.Length == 0)
+                        MainActivity.Ip = editIPaddress.Text;
+                        if (MainActivity.Ip.Length == 0)
                         {
                             Toast.MakeText(this.Activity, "IP Address is empty", ToastLength.Long).Show();
                         }
                         else
                         {
+                            //create alertdialog for saving file
                             LayoutInflater layoutInflater = LayoutInflater.From(Context);
                             View view = layoutInflater.Inflate(Resource.Layout.file_name_dialog, null);
-                            //view.SetBackgroundResource(Resource.Drawable.ip_background);
                             AlertDialog.Builder builder = new AlertDialog.Builder(Context, Resource.Style.AlertDialogTheme);
                             builder.SetTitle("Input file name");
                             EditText input = view.FindViewById<EditText>(Resource.Id.input);
                             builder.SetView(view);
-
                             builder.SetCancelable(false)
                                 .SetPositiveButton("Save", delegate
                                 {
-                                    SendScriptConnection.StartConnectionAsync(serIpAddress, input.Text,
+                                    SendScriptConnection.StartConnectionAsync(MainActivity.Ip, input.Text,
                                         textBox.Text);
                                     Toast.MakeText(Activity, "Script " + input.Text + " has been saved",
                                         ToastLength.Short).Show();

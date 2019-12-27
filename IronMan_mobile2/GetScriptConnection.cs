@@ -40,7 +40,6 @@ namespace IronMan_mobile2
                             ScriptDateCreated = scriptData[1], 
                             ScriptData = scriptData[2]
                         });
-                        //Scripts.AddToScriptList(script);
                     }
                 }
 

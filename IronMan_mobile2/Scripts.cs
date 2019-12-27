@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -10,54 +9,53 @@ using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
 using Fragment = Android.Support.V4.App.Fragment;
-using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace IronMan_mobile2
 {
     public sealed class Scripts : Fragment
     {
-        private static RelativeLayout runBar;
-        private static RecyclerView lst;
+        private static RelativeLayout _runBar;
+        private static RecyclerView _lst;
         private RecyclerView.LayoutManager lstLayoutManager;
-        private static ScriptsAdapter adapter;
-        private static Button run;
-        private static int lstMaxHeight;
-        private static int lstMinHeight;
-        public static int scriptCompletedCounter;
+        private static ScriptsAdapter _adapter;
+        private static Button _run;
+        private static int _lstMaxHeight;
+        private static int _lstMinHeight;
+        public static int ScriptCompletedCounter;
         public static Context context;
-        private ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
+        private readonly ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
+
+        private static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
         
-        public static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
-        
-        public static List<ScriptItem> SelectedScripts = new List<ScriptItem>();
+        public static readonly List<ScriptItem> SelectedScripts = new List<ScriptItem>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
-            lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
-            runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
-            run = view.FindViewById<Button>(Resource.Id.startseq);
+            _lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
+            _runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
+            _run = view.FindViewById<Button>(Resource.Id.startseq);
             context = Context;
 
 
 
 
             //hide run bar
-            runBar.Animate().TranslationY(250);
+            _runBar.Animate().TranslationY(250);
             //SetRunBarVisibility(VisibilityFlags.Invisible);
 
-            adapter = new ScriptsAdapter(Context, ScriptList) {HasStableIds = true};
-            lst.SetAdapter(adapter);
+            _adapter = new ScriptsAdapter(Context, ScriptList) {HasStableIds = true};
+            _lst.SetAdapter(_adapter);
             
             //set the layout manager for list
             lstLayoutManager = new LinearLayoutManager(Context);
-            lst.SetLayoutManager(lstLayoutManager);
+            _lst.SetLayoutManager(lstLayoutManager);
             
-            itemTouchHelper.AttachToRecyclerView(lst);
+            itemTouchHelper.AttachToRecyclerView(_lst);
 
-            lstMaxHeight = lst.LayoutParameters.Height;
-            lstMinHeight = lst.LayoutParameters.Height - runBar.LayoutParameters.Height - run.LayoutParameters.Height;
+            _lstMaxHeight = _lst.LayoutParameters.Height;
+            _lstMinHeight = _lst.LayoutParameters.Height - _runBar.LayoutParameters.Height - _run.LayoutParameters.Height;
             //show running window after Run click
-            run.Click += delegate
+            _run.Click += delegate
             {
                 if (!SelectedScripts.Any())
                 {
@@ -65,7 +63,7 @@ namespace IronMan_mobile2
                 }
                 else
                 {
-                    scriptCompletedCounter = 0;
+                    ScriptCompletedCounter = 0;
                     RunScriptConnection.StartConnectionAsync(MainActivity.Ip);
                     
                     //replace Scripts with Running
@@ -98,40 +96,40 @@ namespace IronMan_mobile2
             switch (flag)
             {
                 case VisibilityFlags.Invisible:
-                    runBar.Animate().TranslationY(250);
-                    AnimatedListResizing(lstMinHeight, lstMaxHeight);
+                    _runBar.Animate().TranslationY(250);
+                    AnimatedListResizing(_lstMinHeight, _lstMaxHeight);
                     break;
                 case VisibilityFlags.Visible:
-                    runBar.Animate().TranslationY(0);
-                    AnimatedListResizing(lstMaxHeight, lstMinHeight);
+                    _runBar.Animate().TranslationY(0);
+                    AnimatedListResizing(_lstMaxHeight, _lstMinHeight);
                     break;
             }
         }
         
         private static void AnimatedListResizing(int fromHeight, int toHeight)
         {
-                Animation animClick = new ResizeListAnimation(lst, fromHeight, toHeight);
+                Animation animClick = new ResizeListAnimation(_lst, fromHeight, toHeight);
                 animClick.Interpolator = new AccelerateInterpolator();
                 animClick.Duration = 300;
-                lst.Animation = animClick;
-                lst.StartAnimation(animClick);
+                _lst.Animation = animClick;
+                _lst.StartAnimation(animClick);
         }
 
-        private static int removedItemPosition;
-        private static ScriptItem removedItem;
+        private static int _removedItemPosition;
+        private static ScriptItem _removedItem;
 
         public static void RemoveScript(int position)
         {
-            removedItemPosition = position;
-            removedItem = ScriptList[position];
+            _removedItemPosition = position;
+            _removedItem = ScriptList[position];
             ScriptList.RemoveAt(position);
-            adapter.NotifyDataSetChanged();
+            _adapter.NotifyDataSetChanged();
         }
         
         public static void InsertScript()
         {
-            ScriptList.Insert(removedItemPosition, removedItem);
-            adapter.NotifyDataSetChanged();
+            ScriptList.Insert(_removedItemPosition, _removedItem);
+            _adapter.NotifyDataSetChanged();
         }
         
     }

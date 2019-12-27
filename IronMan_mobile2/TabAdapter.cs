@@ -13,13 +13,9 @@ namespace IronMan_mobile2
 {
     public class TabAdapter : FragmentPagerAdapter
     {
-        List<Fragment> fragments = new List<Fragment>();
-        private List<string> titels = new List<string>();
-        private Context context;
-
-        public TabAdapter(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
+        private readonly List<Fragment> fragments = new List<Fragment>();
+        private readonly List<string> titles = new List<string>();
+        private readonly Context context;
 
         public TabAdapter(FragmentManager fm, Context context) : base(fm)
         {
@@ -36,14 +32,14 @@ namespace IronMan_mobile2
         public void AddFragment(Fragment fragment, string title)
         {
             fragments.Add(fragment);
-            titels.Add(title);
+            titles.Add(title);
         }
 
         public View GetTabView(int position)
         {
             View view = LayoutInflater.From(context).Inflate(Resource.Layout.custom_tab, null);
             TextView textView = view.FindViewById<TextView>(Resource.Id.tabTextView);
-            textView.Text = titels[position];
+            textView.Text = titles[position];
             return view;
         }
 
@@ -51,7 +47,7 @@ namespace IronMan_mobile2
         {
             View view = LayoutInflater.From(context).Inflate(Resource.Layout.custom_tab, null);
             TextView textView = view.FindViewById<TextView>(Resource.Id.tabTextView);
-            textView.Text = titels[position];
+            textView.Text = titles[position];
             return view;
         }
     }

@@ -14,10 +14,6 @@ namespace IronMan_mobile2
 {
     public class SwipeController : ItemTouchHelper.SimpleCallback
     {
-        public SwipeController(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
-        {
-        }
-
         public SwipeController(int dragDirs, int swipeDirs) : base(dragDirs, swipeDirs)
         {
         }
