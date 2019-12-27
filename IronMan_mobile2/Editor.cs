@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Speech;
 using Android.Support.V4.Content;
+using Android.Support.V4.View;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -14,7 +16,14 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 
 namespace IronMan_mobile2
-{
+{ 
+    class Animator : AnimatorListenerAdapter
+    {
+        public override void OnAnimationEnd(Android.Animation.Animator animation)
+        {
+            base.OnAnimationEnd(animation);
+        }
+    }
     public sealed class Editor : Fragment
     {
         private bool isRecording;
@@ -25,6 +34,8 @@ namespace IronMan_mobile2
         private Button saveScript;
         private Button connectButton;
         private Button editButton;
+        private LinearLayout glowCircle;
+        private AnimatorSet recButtonGlow;
         public static string ConnectMessage { get; set; }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -46,7 +57,20 @@ namespace IronMan_mobile2
             recButton = view.FindViewById<Button>(Resource.Id.btnRecord);
             connectButton = view.FindViewById<Button>(Resource.Id.connect);
             editButton = view.FindViewById<Button>(Resource.Id.btnEdit);
+            glowCircle = view.FindViewById<LinearLayout>(Resource.Id.glow_circle);
+            recButtonGlow = new AnimatorSet();
             
+            ObjectAnimator fadeout = ObjectAnimator.OfFloat(glowCircle, "alpha", 0.7f, 0.1f);
+            fadeout.SetDuration(1000);
+            
+            ObjectAnimator fadein = ObjectAnimator.OfFloat(glowCircle, "alpha", 0.1f, 0.7f);
+            fadein.SetDuration(1000);
+
+            recButtonGlow.Play(fadein).After(fadeout);
+            recButtonGlow.AnimationEnd+= delegate {recButtonGlow.Start();};
+            recButtonGlow.Start();
+            
+
             //connect to computer
             connectButton.Click += delegate
             {

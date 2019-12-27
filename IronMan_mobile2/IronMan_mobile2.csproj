@@ -144,6 +144,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\check_mark_connect.xml" />
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
+    <AndroidResource Include="Resources\drawable\circle_button_glow.xml" />
     <AndroidResource Include="Resources\drawable\connect_background.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_ip_cursor.xml" />
