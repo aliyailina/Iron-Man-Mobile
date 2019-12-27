@@ -27,10 +27,10 @@ namespace IronMan_mobile2
     public sealed class ScriptsAdapter : RecyclerView.Adapter
     {
             public static int scriptSelectedCounter;
-            private readonly List<string> list; //list of scripts
+            private readonly List<ScriptItem> list; //list of scripts
             private readonly Context context; 
 
-            public ScriptsAdapter(Context context, List<string> list)
+            public ScriptsAdapter(Context context, List<ScriptItem> list)
             {
                 scriptSelectedCounter = 0;
                 this.list = list;
@@ -49,7 +49,7 @@ namespace IronMan_mobile2
             //GetItemId and GetItemViewType overriding need for right ViewHolder work
             public override long GetItemId(int position)
             {
-                string item = list[position];
+                ScriptItem item = list[position];
                 return item.GetHashCode();
             }
             
@@ -65,7 +65,7 @@ namespace IronMan_mobile2
 
                 if (holder is ScriptsViewHolder vh)
                 {
-                    vh.ScriptName.Text = list[position];
+                    vh.ScriptName.Text = list[position].ScriptName;
 
                     //event unsubscription to don't repeat the subscription
                     vh.BtnPlus.Click -= BtnPlusOnClick;
@@ -112,6 +112,11 @@ namespace IronMan_mobile2
                     LayoutInflater layoutInflater = LayoutInflater.From(context);
                     View v = layoutInflater.Inflate(Resource.Layout.file_info_dialog, null);
                     Button okayBtn = v.FindViewById<Button>(Resource.Id.ok_btn);
+                    TextView dateCreated = v.FindViewById<TextView>(Resource.Id.creating_date);
+                    dateCreated.Text = list[position].ScriptDateCreated;
+
+                    TextView content = v.FindViewById<TextView>(Resource.Id.script_info);
+                    content.Text = list[position].ScriptData;
                     //view.SetBackgroundResource(Resource.Drawable.ip_background);
                     AlertDialog.Builder builder = new AlertDialog.Builder(context, Resource.Style.AlertDialogTheme);
                     builder.SetView(v);

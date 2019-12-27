@@ -201,11 +201,6 @@ namespace IronMan_mobile2
                                         textBox.Text);
                                     Toast.MakeText(Activity, "Script " + input.Text + " has been saved",
                                         ToastLength.Short).Show();
-                                    /*Thread.Sleep(1000);
-                                    foreach (var film in filmData)
-                                    {
-                                        textBox.Text += '\n' + film;
-                                    }*/
                                 })
                                 .SetNegativeButton("Cancel", delegate { builder.Dispose(); });
                             var dialog = builder.Create();

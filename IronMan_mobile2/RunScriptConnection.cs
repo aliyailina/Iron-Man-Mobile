@@ -54,7 +54,7 @@ namespace IronMan_mobile2
         { 
             foreach (var script in Scripts.SelectedScripts)
             {
-                Running.Result = await Task.Run(() => StartConnection(IP, script));
+                Running.Result = await Task.Run(() => StartConnection(IP, script.ScriptName));
             }
         }
     }

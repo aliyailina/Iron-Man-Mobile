@@ -27,9 +27,9 @@ namespace IronMan_mobile2
         public static Context context;
         private ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
         
-        public static readonly List<string> ScriptList = new List<string>();
+        public static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
         
-        public static List<string> SelectedScripts = new List<string>();
+        public static List<ScriptItem> SelectedScripts = new List<ScriptItem>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
@@ -83,9 +83,9 @@ namespace IronMan_mobile2
         }
 
         
-        public static void AddToScriptList(string script)
+        public static void AddToScriptList(ScriptItem script)
         {
-            if (!ScriptList.Contains(script) && !string.IsNullOrEmpty(script))
+            if (!ScriptList.Contains(script) && !string.IsNullOrEmpty(script.ScriptName))
             {
                 ScriptList.Add(script);
             }
@@ -118,7 +118,7 @@ namespace IronMan_mobile2
         }
 
         private static int removedItemPosition;
-        private static string removedItem;
+        private static ScriptItem removedItem;
 
         public static void RemoveScript(int position)
         {

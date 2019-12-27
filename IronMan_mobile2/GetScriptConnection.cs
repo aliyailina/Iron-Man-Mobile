@@ -18,9 +18,11 @@ namespace IronMan_mobile2
                 {
                     SendTimeout = 3000, ReceiveTimeout = 3000
                 };
+                
                 socket.Connect(endPoint);
                 byte[] arr = new byte[1024];
                 string[] scripts;
+                string[] scriptData;
                 do
                 {
                     var bytes = socket.Receive(arr);
@@ -29,7 +31,17 @@ namespace IronMan_mobile2
 
                 foreach (var script in scripts)
                 {
-                    Scripts.AddToScriptList(script);
+                    if (!string.IsNullOrEmpty(script))
+                    {
+                        scriptData = script.Split("()");
+                        Scripts.AddToScriptList(new ScriptItem()
+                        {
+                            ScriptName = scriptData[0],
+                            ScriptDateCreated = scriptData[1], 
+                            ScriptData = scriptData[2]
+                        });
+                        //Scripts.AddToScriptList(script);
+                    }
                 }
 
                 Editor.ConnectMessage = "Connected";
@@ -37,7 +49,7 @@ namespace IronMan_mobile2
                 socket.Close();
 
             }
-            catch
+            catch(Exception e)
             {
                 Editor.ConnectMessage = "Not connected";
             }
