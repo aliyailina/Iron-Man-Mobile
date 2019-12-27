@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -15,7 +17,7 @@ namespace IronMan_mobile2
         public TextView ScriptName { get; }
         public ImageButton BtnPlus { get; }
         public int btnCounter = 0;
- 
+
         public ScriptsViewHolder(View itemView) : base(itemView)
         {
             ScriptName = itemView.FindViewById<TextView>(Resource.Id.textView5);
@@ -47,8 +49,11 @@ namespace IronMan_mobile2
             //GetItemId and GetItemViewType overriding need for right ViewHolder work
             public override long GetItemId(int position)
             {
-                return position;
+                string item = list[position];
+                return item.GetHashCode();
             }
+            
+            
 
             public override int GetItemViewType(int position)
             {
@@ -92,8 +97,6 @@ namespace IronMan_mobile2
                             scriptSelectedCounter--;
                             //change check mark to "+"
                             vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
-                           /* Scripts.SelectedScripts =
-                                Scripts.SelectedScripts.Replace(list[position] + "*", "");*/
 
                            Scripts.SelectedScripts.Remove(list[position]);
                         } 

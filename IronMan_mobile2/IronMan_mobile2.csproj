@@ -70,6 +70,7 @@
     <Compile Include="ScriptsAdapter.cs" />
     <Compile Include="SendScriptConnection.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="SwipeController.cs" />
     <Compile Include="TabAdapter.cs" />
     <Compile Include="VisibilityFlags.cs" />
   </ItemGroup>

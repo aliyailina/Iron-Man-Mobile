@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.Widget;
+using Android.Support.V7.Widget.Helper;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
@@ -18,11 +19,13 @@ namespace IronMan_mobile2
         private static RelativeLayout runBar;
         private static RecyclerView lst;
         private RecyclerView.LayoutManager lstLayoutManager;
-        private ScriptsAdapter adapter;
+        private static ScriptsAdapter adapter;
         private static Button run;
         private static int lstMaxHeight;
         private static int lstMinHeight;
         public static int scriptCompletedCounter;
+        public static Context context;
+        private ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
         
         public static readonly List<string> ScriptList = new List<string>();
         
@@ -33,20 +36,26 @@ namespace IronMan_mobile2
             lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
             runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
             run = view.FindViewById<Button>(Resource.Id.startseq);
-            
+            context = Context;
+
+
+
 
             //hide run bar
-            SetRunBarVisibility(VisibilityFlags.Invisible);
-            
-            adapter = new ScriptsAdapter(Context, ScriptList);
+            runBar.Animate().TranslationY(250);
+            //SetRunBarVisibility(VisibilityFlags.Invisible);
+
+            adapter = new ScriptsAdapter(Context, ScriptList) {HasStableIds = true};
             lst.SetAdapter(adapter);
             
             //set the layout manager for list
             lstLayoutManager = new LinearLayoutManager(Context);
             lst.SetLayoutManager(lstLayoutManager);
+            
+            itemTouchHelper.AttachToRecyclerView(lst);
 
             lstMaxHeight = lst.LayoutParameters.Height;
-            lstMinHeight = lst.LayoutParameters.Height - runBar.LayoutParameters.Height;
+            lstMinHeight = lst.LayoutParameters.Height - runBar.LayoutParameters.Height - run.LayoutParameters.Height;
             //show running window after Run click
             run.Click += delegate
             {
@@ -101,12 +110,29 @@ namespace IronMan_mobile2
         
         private static void AnimatedListResizing(int fromHeight, int toHeight)
         {
-            if (lst.LayoutParameters.Height != fromHeight) return;
-            Animation animClick = new ResizeListAnimation(lst, fromHeight, toHeight);
-            animClick.Interpolator = new AccelerateInterpolator();
-            animClick.Duration = 300;
-            lst.Animation = animClick;
-            lst.StartAnimation(animClick);
+                Animation animClick = new ResizeListAnimation(lst, fromHeight, toHeight);
+                animClick.Interpolator = new AccelerateInterpolator();
+                animClick.Duration = 300;
+                lst.Animation = animClick;
+                lst.StartAnimation(animClick);
         }
+
+        private static int removedItemPosition;
+        private static string removedItem;
+
+        public static void RemoveScript(int position)
+        {
+            removedItemPosition = position;
+            removedItem = ScriptList[position];
+            ScriptList.RemoveAt(position);
+            adapter.NotifyDataSetChanged();
+        }
+        
+        public static void InsertScript()
+        {
+            ScriptList.Insert(removedItemPosition, removedItem);
+            adapter.NotifyDataSetChanged();
+        }
+        
     }
 }
