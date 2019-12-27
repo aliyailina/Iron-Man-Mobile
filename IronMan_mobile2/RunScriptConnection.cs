@@ -42,9 +42,9 @@ namespace IronMan_mobile2
                 
 
             }
-            catch (Exception e)
+            catch
             {
-                
+                // ignored
             }
 
             return result;

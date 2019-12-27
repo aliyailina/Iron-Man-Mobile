@@ -11,37 +11,36 @@ namespace IronMan_mobile2
 {
     public class Running : Fragment
     {
-        private bool backIsClicked;
-        public bool scriptIsRunning = true;
-        private static TextView pleasewait;
+        public bool ScriptIsRunning = true;
+        private static TextView _pleasewait;
         private Button back;
-        private static ProgressBar oneScriptIndicator;
-        private static string result;
-        private static Context context;
-        private static TextView runningText;
-        private static TextView howManyScriptsText;
+        private static ProgressBar _oneScriptIndicator;
+        private static string _result;
+        private static Context _context;
+        private static TextView _runningText;
+        private static TextView _howManyScriptsText;
 
         public static string Result
         {
-            get => result;
+            get => _result;
             set
             {
-                result = null;
+                _result = null;
                 Scripts.ScriptCompletedCounter++;
                 var locker = new object();
                 lock (locker)
                 {
                     if (value != null)
                     {
-                        result = value;
-                        Toast.MakeText(context, result, ToastLength.Short).Show();
-                        howManyScriptsText.Text = $"{Scripts.ScriptCompletedCounter}/{ScriptsAdapter.ScriptSelectedCounter}";
+                        _result = value;
+                        Toast.MakeText(_context, _result, ToastLength.Short).Show();
+                        _howManyScriptsText.Text = $"{Scripts.ScriptCompletedCounter}/{ScriptsAdapter.ScriptSelectedCounter}";
                         if (Scripts.ScriptCompletedCounter == ScriptsAdapter.ScriptSelectedCounter)
                         {
-                            oneScriptIndicator.Visibility = ViewStates.Gone;
-                            pleasewait.Visibility = ViewStates.Gone;
-                            runningText.Text = "DONE";
-                            Toast.MakeText(context, "It's all", ToastLength.Short).Show();
+                            _oneScriptIndicator.Visibility = ViewStates.Gone;
+                            _pleasewait.Visibility = ViewStates.Gone;
+                            _runningText.Text = "DONE";
+                            Toast.MakeText(_context, "It's all", ToastLength.Short).Show();
                         }
                     }
                 }
@@ -51,14 +50,14 @@ namespace IronMan_mobile2
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.running, container, false);
-            pleasewait = view.FindViewById<TextView>(Resource.Id.pleasewait);
+            _pleasewait = view.FindViewById<TextView>(Resource.Id.pleasewait);
             back = view.FindViewById<Button>(Resource.Id.back);
-            oneScriptIndicator = view.FindViewById<ProgressBar>(Resource.Id.oneScriptIndicator);
-            runningText = view.FindViewById<TextView>(Resource.Id.runningText);
-            howManyScriptsText = view.FindViewById<TextView>(Resource.Id.howManyScriptsText);
-            context = Context;
+            _oneScriptIndicator = view.FindViewById<ProgressBar>(Resource.Id.oneScriptIndicator);
+            _runningText = view.FindViewById<TextView>(Resource.Id.runningText);
+            _howManyScriptsText = view.FindViewById<TextView>(Resource.Id.howManyScriptsText);
+            _context = Context;
 
-            howManyScriptsText.Text = $"0/{ScriptsAdapter.ScriptSelectedCounter}";
+            _howManyScriptsText.Text = $"0/{ScriptsAdapter.ScriptSelectedCounter}";
             
 
             //when "BACK" is clicked

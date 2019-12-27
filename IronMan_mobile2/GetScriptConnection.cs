@@ -48,7 +48,7 @@ namespace IronMan_mobile2
                 socket.Close();
 
             }
-            catch(Exception e)
+            catch
             {
                 Editor.ConnectMessage = "Not connected";
             }
