@@ -14,7 +14,6 @@ using Java.Lang;
 using Fragment = Android.Support.V4.App.Fragment;
 
 
-
 namespace IronMan_mobile2
 { 
     class Animator : AnimatorListenerAdapter

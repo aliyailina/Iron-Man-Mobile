@@ -51,13 +51,6 @@ namespace IronMan_mobile2
                 var item = list[position];
                 return item.GetHashCode();
             }
-            
-            
-
-            public override int GetItemViewType(int position)
-            {
-                return position;
-            }
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
@@ -78,7 +71,7 @@ namespace IronMan_mobile2
                     //when click on "+" button in script item
                     void BtnPlusOnClick(object sender, EventArgs args)
                     {
-                        if (!vh.BtnPlusIsClicked)
+                        if (vh.BtnPlusIsClicked == false)
                         {
                             vh.BtnPlusIsClicked = true;
                             ScriptSelectedCounter++;
