@@ -23,13 +23,14 @@ namespace IronMan_mobile2
         private static int _lstMinHeight;
         public static int ScriptCompletedCounter;
         public static Context context;
-        private readonly ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
+        private ItemTouchHelper itemTouchHelper;
 
         private static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
         
         public static readonly List<ScriptItem> SelectedScripts = new List<ScriptItem>();
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
             _lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
             _runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
@@ -115,22 +116,15 @@ namespace IronMan_mobile2
                 _lst.StartAnimation(animClick);
         }
 
-        private static int _removedItemPosition;
-        private static ScriptItem _removedItem;
-
         public static void RemoveScript(int position)
         {
-            _removedItemPosition = position;
-            _removedItem = ScriptList[position];
             ScriptList.RemoveAt(position);
             _adapter.NotifyDataSetChanged();
+            _adapter.NotifyItemChanged(position);
+            _adapter.NotifyItemRangeChanged(position, ScriptList.Count);
+            _adapter.NotifyItemRemoved(position);
+            DeleteScriptConnection.StartConnectionAsync(MainActivity.Ip, ScriptList[position]);
         }
-        
-        public static void InsertScript()
-        {
-            ScriptList.Insert(_removedItemPosition, _removedItem);
-            _adapter.NotifyDataSetChanged();
-        }
-        
+
     }
 }

@@ -57,6 +57,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeleteScriptConnection.cs" />
     <Compile Include="Editor.cs" />
     <Compile Include="GetScriptConnection.cs" />
     <Compile Include="MainActivity.cs" />
@@ -146,6 +147,7 @@
     <AndroidResource Include="Resources\drawable\circle_button.xml" />
     <AndroidResource Include="Resources\drawable\circle_button_glow.xml" />
     <AndroidResource Include="Resources\drawable\connect_background.xml" />
+    <AndroidResource Include="Resources\drawable\delete_background_rect.xml" />
     <AndroidResource Include="Resources\drawable\edit_ip.png" />
     <AndroidResource Include="Resources\drawable\edit_ip_cursor.xml" />
     <AndroidResource Include="Resources\drawable\edit_text.png" />
