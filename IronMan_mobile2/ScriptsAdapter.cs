@@ -13,7 +13,7 @@ namespace IronMan_mobile2
     {
         private bool isSwipeEnabled = true;
 
-        public bool IsSwipeEnabled
+       /* public bool IsSwipeEnabled
         {
             get => isSwipeEnabled;
             set
@@ -23,16 +23,24 @@ namespace IronMan_mobile2
                     ScriptBackground.Visibility = ViewStates.Visible;
                     ScriptForeground.Animate().TranslationX(-250);
                     isSwipeEnabled = false;
-                    BtnPlus.Click += delegate { IsSwipeEnabled = true; };
+                    Scripts.ItemTouchHelperAttach(false);
+                    BtnPlus.Click += delegate
+                    {
+                        ScriptBackground.Visibility = ViewStates.Gone;
+                        ScriptForeground.TranslationX = 0;
+                        isSwipeEnabled = true;
+                        Scripts.ItemTouchHelperAttach(true);
+                    };
                 }
                 else
                 {
                     ScriptBackground.Visibility = ViewStates.Gone;
                     ScriptForeground.TranslationX = 0;
                     isSwipeEnabled = true;
+                    Scripts.ItemTouchHelperAttach(true);
                 }
             }
-        }
+        }*/
 
         public TextView ScriptName { get; }
         public ImageButton BtnPlus { get; }
@@ -105,13 +113,15 @@ namespace IronMan_mobile2
             
                 void BtnDeleteOnClick(object sender, EventArgs e)
                 {
+                    vh.ScriptForeground.TranslationX = 0;
+                    vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
+                    Scripts.ItemTouchHelperAttach(true);
                     DeleteScriptConnection.StartConnectionAsync(MainActivity.Ip, list[position]);
                     list.RemoveAt(position);
                     NotifyDataSetChanged();
                     NotifyItemChanged(position);
                     NotifyItemRangeChanged(position, list.Count);
                     NotifyItemRemoved(position);
-                    //Scripts.RemoveScript(vh.AdapterPosition);
                 }
 
                 //event unsubscription to don't repeat the subscription

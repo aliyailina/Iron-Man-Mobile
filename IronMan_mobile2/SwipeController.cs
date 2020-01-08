@@ -25,7 +25,7 @@ namespace IronMan_mobile2
         
         public override int GetSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder)
         {
-            return ((ScriptsViewHolder)viewHolder).IsSwipeEnabled ? 0 : base.GetSwipeDirs(recyclerView, viewHolder);
+            return base.GetSwipeDirs(recyclerView, viewHolder);
         }
 
         public override void OnChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState,
@@ -36,17 +36,17 @@ namespace IronMan_mobile2
 
         public override void OnSwiped(RecyclerView.ViewHolder viewHolder, int direction)
         {
-            if (((ScriptsViewHolder) viewHolder).IsSwipeEnabled == false)
+            ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Visible;
+            ((ScriptsViewHolder) viewHolder).ScriptForeground.Animate().TranslationX(-250);
+            Scripts.ItemTouchHelperAttach(false);
+            ((ScriptsViewHolder) viewHolder).BtnPlus.SetImageResource(Resource.Drawable.Back);
+            ((ScriptsViewHolder) viewHolder).BtnPlus.Click += delegate
             {
-                ((ScriptsViewHolder) viewHolder).Delete.CallOnClick();
-                //Scripts.RemoveScript(((ScriptsViewHolder)viewHolder).AdapterPosition);
-                ((ScriptsViewHolder) viewHolder).IsSwipeEnabled = true;
-            }
-            else
-            {
-                ((ScriptsViewHolder) viewHolder).IsSwipeEnabled = false;
-            }
-           
+                ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Gone;
+                ((ScriptsViewHolder) viewHolder).ScriptForeground.TranslationX = 0;
+                Scripts.ItemTouchHelperAttach(true);
+            };
+            ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Visible;
         }
     }
 }

@@ -23,11 +23,16 @@ namespace IronMan_mobile2
         private static int _lstMinHeight;
         public static int ScriptCompletedCounter;
         public static Context context;
-        private ItemTouchHelper itemTouchHelper;
+        private static ItemTouchHelper itemTouchHelper;
 
         private static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
         
         public static readonly List<ScriptItem> SelectedScripts = new List<ScriptItem>();
+
+        public static void ItemTouchHelperAttach(bool flag)
+        {
+            itemTouchHelper.AttachToRecyclerView(flag ? _lst : null);
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));

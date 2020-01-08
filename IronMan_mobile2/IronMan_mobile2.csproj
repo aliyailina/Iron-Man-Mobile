@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\anim\run_bar_anim.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\Back.png" />
     <AndroidResource Include="Resources\drawable-hdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-hdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-hdpi\edit_ip.png" />
@@ -92,6 +93,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-hdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-hdpi\wrong.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\Back.png" />
     <AndroidResource Include="Resources\drawable-ldpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-ldpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-ldpi\edit_ip.png" />
@@ -101,6 +103,7 @@
     <AndroidResource Include="Resources\drawable-ldpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-ldpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-ldpi\wrong.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\Back.png" />
     <AndroidResource Include="Resources\drawable-mdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-mdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-mdpi\edit_ip.png" />
@@ -110,6 +113,7 @@
     <AndroidResource Include="Resources\drawable-mdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-mdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-mdpi\wrong.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\Back.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\edit_ip.png" />
@@ -119,6 +123,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\wrong.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\Back.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\edit_ip.png" />
@@ -128,6 +133,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\splash_screen.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\start_recording.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\wrong.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Back.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\buttons_bar.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\chech_mark.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\edit_ip.png" />
