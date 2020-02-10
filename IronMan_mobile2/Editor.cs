@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using Android.Animation;
+﻿using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Speech;
 using Android.Support.V4.Content;
-using Android.Support.V4.View;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -15,14 +13,7 @@ using Fragment = Android.Support.V4.App.Fragment;
 
 
 namespace IronMan_mobile2
-{ 
-    class Animator : AnimatorListenerAdapter
-    {
-        public override void OnAnimationEnd(Android.Animation.Animator animation)
-        {
-            base.OnAnimationEnd(animation);
-        }
-    }
+{
     public sealed class Editor : Fragment
     {
         private bool isRecording;

@@ -36,17 +36,12 @@ namespace IronMan_mobile2
 
         public override void OnSwiped(RecyclerView.ViewHolder viewHolder, int direction)
         {
-            ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Visible;
-            ((ScriptsViewHolder) viewHolder).ScriptForeground.Animate().TranslationX(-250);
+            var holder = (ScriptsViewHolder) viewHolder;
+            holder.ScriptBackground.Visibility = ViewStates.Visible;
+            holder.ScriptForeground.Animate().TranslationX(-250);
             Scripts.ItemTouchHelperAttach(false);
-            ((ScriptsViewHolder) viewHolder).BtnPlus.SetImageResource(Resource.Drawable.Back);
-            ((ScriptsViewHolder) viewHolder).BtnPlus.Click += delegate
-            {
-                ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Gone;
-                ((ScriptsViewHolder) viewHolder).ScriptForeground.TranslationX = 0;
-                Scripts.ItemTouchHelperAttach(true);
-            };
-            ((ScriptsViewHolder) viewHolder).ScriptBackground.Visibility = ViewStates.Visible;
+            holder.BtnPlus.Visibility = ViewStates.Gone;
+            holder.BtnBack.Visibility = ViewStates.Visible;
         }
     }
 }

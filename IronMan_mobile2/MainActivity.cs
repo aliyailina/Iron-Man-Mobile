@@ -28,6 +28,12 @@ namespace IronMan_mobile2
         {
             
             base.OnCreate(savedInstanceState);
+            Scripts.AddToScriptList(new ScriptItem()
+            {
+                ScriptName = "hi",
+                ScriptDateCreated = "1", 
+                ScriptData = "aaaa"
+            });
             
             //hide Status Bar
             Window.AddFlags(WindowManagerFlags.Fullscreen);

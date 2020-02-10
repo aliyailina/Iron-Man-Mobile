@@ -44,6 +44,18 @@
                     android:textSize="20sp"
                     android:gravity="center"
                     android:background="@drawable/script_background"/>
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <ImageButton
+                        android:id="@+id/back_btn"
+                        android:layout_width="59dp"
+                        android:layout_height="49dp"
+                        android:background="@drawable/script_indicator"
+                        android:src="@drawable/Back"
+                        android:padding="10dp"
+                        android:layout_gravity="end"/>
+                
                 <ImageButton
                         android:id="@+id/plus_btn"
                         android:layout_width="59dp"
@@ -52,6 +64,8 @@
                         android:src="@drawable/plus_btn"
                         android:padding="10dp"
                         android:layout_gravity="end"/>
+            </FrameLayout>
+                
         </LinearLayout>
     </FrameLayout>
 </TableRow>

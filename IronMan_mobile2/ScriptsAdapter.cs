@@ -11,45 +11,17 @@ namespace IronMan_mobile2
     //ViewHolder for RecyclerView
     public sealed class ScriptsViewHolder : RecyclerView.ViewHolder
     {
-        private bool isSwipeEnabled = true;
-
-       /* public bool IsSwipeEnabled
-        {
-            get => isSwipeEnabled;
-            set
-            {
-                if (!value)
-                {
-                    ScriptBackground.Visibility = ViewStates.Visible;
-                    ScriptForeground.Animate().TranslationX(-250);
-                    isSwipeEnabled = false;
-                    Scripts.ItemTouchHelperAttach(false);
-                    BtnPlus.Click += delegate
-                    {
-                        ScriptBackground.Visibility = ViewStates.Gone;
-                        ScriptForeground.TranslationX = 0;
-                        isSwipeEnabled = true;
-                        Scripts.ItemTouchHelperAttach(true);
-                    };
-                }
-                else
-                {
-                    ScriptBackground.Visibility = ViewStates.Gone;
-                    ScriptForeground.TranslationX = 0;
-                    isSwipeEnabled = true;
-                    Scripts.ItemTouchHelperAttach(true);
-                }
-            }
-        }*/
-
         public TextView ScriptName { get; }
         public ImageButton BtnPlus { get; }
+        
+        public ImageButton BtnBack { get; }
+        
+        public bool BtnPlusIsClicked { get; set; }
 
-        public bool BtnPlusIsClicked;
+        public LinearLayout ScriptBackground { get; }
+        public LinearLayout ScriptForeground { get; }
 
-        public LinearLayout ScriptBackground, ScriptForeground;
-
-        public Button Delete;
+        public Button Delete { get; }
 
         public ScriptsViewHolder(View itemView) : base(itemView)
         {
@@ -58,7 +30,9 @@ namespace IronMan_mobile2
             ScriptBackground = itemView.FindViewById<LinearLayout>(Resource.Id.script_background);
             ScriptForeground = itemView.FindViewById<LinearLayout>(Resource.Id.script_foreground);
             Delete = itemView.FindViewById<Button>(Resource.Id.deleteBtn);
+            BtnBack = itemView.FindViewById<ImageButton>(Resource.Id.back_btn);
             ScriptBackground.Visibility = ViewStates.Gone;
+            BtnBack.Visibility = ViewStates.Gone;
         }
     }
 
@@ -103,7 +77,8 @@ namespace IronMan_mobile2
             {
                 vh.ScriptName.Text = list[position].ScriptName;
 
-
+                //check if button has the OnClick listener for set it only once
+                
                 if (!vh.Delete.HasOnClickListeners)
                 {
                     vh.Delete.Click -= BtnDeleteOnClick;
@@ -113,7 +88,7 @@ namespace IronMan_mobile2
             
                 void BtnDeleteOnClick(object sender, EventArgs e)
                 {
-                    vh.ScriptForeground.TranslationX = 0;
+                    vh.ScriptForeground.TranslationX = 0; 
                     vh.BtnPlus.SetImageResource(Resource.Drawable.plus_btn);
                     Scripts.ItemTouchHelperAttach(true);
                     DeleteScriptConnection.StartConnectionAsync(MainActivity.Ip, list[position]);
@@ -167,6 +142,21 @@ namespace IronMan_mobile2
                     }
 
                     if (ScriptSelectedCounter == 0) Scripts.SetRunBarVisibility(VisibilityFlags.Invisible);
+                }
+
+                if (!vh.BtnBack.HasOnClickListeners)
+                {
+                    vh.BtnBack.Click -= BtnBackOnClick;
+                    vh.BtnBack.Click += BtnBackOnClick;
+                }
+
+                void BtnBackOnClick(object sender, EventArgs e)
+                {
+                    vh.ScriptBackground.Visibility = ViewStates.Gone;
+                    vh.ScriptForeground.TranslationX = 0;
+                    Scripts.ItemTouchHelperAttach(true);
+                    vh.BtnBack.Visibility = ViewStates.Gone;
+                    vh.BtnPlus.Visibility = ViewStates.Visible;
                 }
             }
 

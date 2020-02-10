@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
 using Android.OS;
@@ -22,8 +21,8 @@ namespace IronMan_mobile2
         private static int _lstMaxHeight;
         private static int _lstMinHeight;
         public static int ScriptCompletedCounter;
-        public static Context context;
-        private static ItemTouchHelper itemTouchHelper;
+        private static Context context;
+        private static ItemTouchHelper _itemTouchHelper;
 
         private static readonly List<ScriptItem> ScriptList = new List<ScriptItem>();
         
@@ -31,22 +30,20 @@ namespace IronMan_mobile2
 
         public static void ItemTouchHelperAttach(bool flag)
         {
-            itemTouchHelper.AttachToRecyclerView(flag ? _lst : null);
+            _itemTouchHelper.AttachToRecyclerView(flag ? _lst : null);
         }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
+            _itemTouchHelper = new ItemTouchHelper(new SwipeController(0, ItemTouchHelper.Left));
             View view = inflater.Inflate(Resource.Layout.scriptviewer, container, false);
             _lst = view.FindViewById<RecyclerView>(Resource.Id.scriptviewer);
             _runBar = view.FindViewById<RelativeLayout>(Resource.Id.runBar); 
             _run = view.FindViewById<Button>(Resource.Id.startseq);
             context = Context;
-
-
-
-
+            
             //hide run bar
             _runBar.Animate().TranslationY(250);
+            
             //SetRunBarVisibility(VisibilityFlags.Invisible);
 
             _adapter = new ScriptsAdapter(Context, ScriptList) {HasStableIds = true};
@@ -56,7 +53,7 @@ namespace IronMan_mobile2
             lstLayoutManager = new LinearLayoutManager(Context);
             _lst.SetLayoutManager(lstLayoutManager);
             
-            itemTouchHelper.AttachToRecyclerView(_lst);
+            _itemTouchHelper.AttachToRecyclerView(_lst);
 
             _lstMaxHeight = _lst.LayoutParameters.Height;
             _lstMinHeight = _lst.LayoutParameters.Height - _runBar.LayoutParameters.Height - _run.LayoutParameters.Height;
